@@ -6,7 +6,6 @@ import {FiveDayPrecipitationComponent} from '../five-day-precipitation/five-day-
 
 @Injectable()
 
-//rename to DataVisualizationService
 export class DataVisualizationService {
 
   private viewContainers: {viewContainerRef: ViewContainerRef, child: string}[] = [];

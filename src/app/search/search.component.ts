@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormControl} from "@angular/forms";
+import {WeatherService} from "../services/weather.service";
+
 
 @Component({
   selector: 'app-search',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  myControl: FormControl = new FormControl();
 
-  constructor() { }
+  options = ['Toronto', 'Port Credit', 'Brampton'];
+
+  constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
+  }
+  onSelection(option: string) {
+    this.weatherService.updateCity(option);
   }
 
 }

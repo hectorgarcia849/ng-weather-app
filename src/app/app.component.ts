@@ -4,6 +4,8 @@ import {
 import {MdSelect} from '@angular/material';
 import {HostDirective} from '../host.directive';
 import {DataVisualizationService} from './services/data-visualization.service';
+import {Subscription} from "rxjs/Subscription";
+import {WeatherService} from "./services/weather.service";
 
 @Component({
   selector: 'app-root',

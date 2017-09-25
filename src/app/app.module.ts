@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
-import {MdGridListModule, MdSelect} from "@angular/material";
+import {MdAutocomplete, MdAutocompleteModule, MdGridListModule, MdInputModule, MdSelect} from "@angular/material";
 import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MdSelectModule} from '@angular/material';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
@@ -13,6 +13,10 @@ import {DataVisualizationService} from "./services/data-visualization.service";
 import { FiveDayWindComponent } from './five-day-wind/five-day-wind.component';
 import { FiveDayHumidityComponent } from './five-day-humidity/five-day-humidity.component';
 import { FiveDayPrecipitationComponent } from './five-day-precipitation/five-day-precipitation.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {WeatherService} from "./services/weather.service";
+
 
 @NgModule({
   declarations: [
@@ -26,12 +30,17 @@ import { FiveDayPrecipitationComponent } from './five-day-precipitation/five-day
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MdGridListModule,
     MdSelectModule,
-    NgxChartsModule
+    MdInputModule,
+    MdAutocompleteModule,
+    NgxChartsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [DataVisualizationService],
+  providers: [DataVisualizationService, WeatherService],
   bootstrap: [AppComponent],
   entryComponents: [FiveDayTempComponent, FiveDayHumidityComponent, FiveDayPrecipitationComponent, FiveDayWindComponent]
 })
