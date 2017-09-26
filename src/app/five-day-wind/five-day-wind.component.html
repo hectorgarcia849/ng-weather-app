@@ -1,3 +1,27 @@
-<p>
-  five-day-wind works!
-</p>
+<ngx-charts-polar-chart
+[view]="view"
+[results]="graphDataWD"
+[scheme]="colorScheme"
+[legend]="showLegend"
+[xAxis]="showXAxis"
+[yAxis]="showYAxis"
+[showXAxisLabel]="showXAxisLabel"
+[showYAxisLabel]="showYAxisLabel"
+[xAxisLabel]="xAxisLabel"
+[yAxisLabel]="yAxisLabel"
+>
+</ngx-charts-polar-chart>
+
+<ngx-charts-bar-vertical
+  [view]="viewBar"
+  [results]="graphDataWS"
+  [scheme]="colorScheme"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabelBar"
+  [yAxisLabel]="yAxisLabelBar">
+  <!--(select)="onSelect($event)">-->
+</ngx-charts-bar-vertical>

@@ -22,7 +22,7 @@ export class FiveDayHumidityComponent implements OnInit, AbstractFunctionalUnit 
   showXAxis = true;
   showYAxis = true;
   gradient = false;
-  showLegend = true;
+  showLegend = false;
   showXAxisLabel = true;
   xAxisLabel = 'Date';
   showYAxisLabel = true;
