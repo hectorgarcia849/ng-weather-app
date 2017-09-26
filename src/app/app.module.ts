@@ -16,8 +16,8 @@ import { FiveDayPrecipitationComponent } from './five-day-precipitation/five-day
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {WeatherService} from "./services/weather.service";
-import {Moment} from "moment";
 import {MomentModule} from "angular2-moment";
+import {ChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -41,7 +41,8 @@ import {MomentModule} from "angular2-moment";
     NgxChartsModule,
     ReactiveFormsModule,
     FormsModule,
-    MomentModule
+    MomentModule,
+    ChartsModule
   ],
   providers: [DataVisualizationService, WeatherService],
   bootstrap: [AppComponent],
