@@ -4,8 +4,6 @@ import {
 import {MdSelect} from '@angular/material';
 import {HostDirective} from '../host.directive';
 import {DataVisualizationService} from './services/data-visualization.service';
-import {Subscription} from "rxjs/Subscription";
-import {WeatherService} from "./services/weather.service";
 
 @Component({
   selector: 'app-root',
@@ -19,10 +17,10 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   @ViewChildren(HostDirective) host;
 
   tiles = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue', child: ''},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen', child: ''},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink', child: ''},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1', child: ''}
+    {text: 'One', cols: 2, rows: 2, color: 'lightblue', child: ''},
+    {text: 'Two', cols: 2, rows: 2, color: 'lightgreen', child: ''},
+    {text: 'Three', cols: 2, rows: 2, color: 'lightpink', child: ''},
+    {text: 'Four', cols: 2, rows: 2, color: '#DDBDF1', child: ''}
   ];
 
   constructor(private dataVisualizationService: DataVisualizationService) {

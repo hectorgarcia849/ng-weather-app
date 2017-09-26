@@ -1,7 +1,7 @@
-  <ngx-charts-line-chart (click)="onSelfDestruct()"
+  <ngx-charts-line-chart
     [view]="view"
     [scheme]="colorScheme"
-    [results]="multi"
+    [results]="graphData"
     [gradient]="gradient"
     [xAxis]="showXAxis"
     [yAxis]="showYAxis"
@@ -11,6 +11,5 @@
     [xAxisLabel]="xAxisLabel"
     [yAxisLabel]="yAxisLabel"
     [autoScale]="autoScale">
-    <!--(select)="onSelect($event)">-->
   </ngx-charts-line-chart>
 

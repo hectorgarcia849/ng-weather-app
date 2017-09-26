@@ -1,9 +1,10 @@
 import {
-  Component, EventEmitter, Input, OnInit, Output, ViewChild,
+  Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild,
   ViewContainerRef
 } from '@angular/core';
 import {AbstractFunctionalUnit} from '../utils/functional-unit/functional-unit.component';
-import {multi, single} from '../../data';
+import {WeatherService} from "../services/weather.service";
+import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
@@ -11,37 +12,59 @@ import {multi, single} from '../../data';
   templateUrl: './five-day-temp.component.html',
   styleUrls: ['./five-day-temp.component.css']
 })
-export class FiveDayTempComponent implements OnInit, AbstractFunctionalUnit {
+export class FiveDayTempComponent implements OnInit, OnDestroy, AbstractFunctionalUnit {
 
-  name = '5-day Temp.';
-  single: any[];
-  multi: any[];
-  view: any[] = [500, 300];
+  forecastSubscription: Subscription;
+  citySubscription: Subscription;
+  graphData: Object[] = [];
+  city: string;
+  name: string;
+
   // options
+  view = [600, 600];
   showXAxis = true;
   showYAxis = true;
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = 'Date';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = 'Temperature';
   autoScale = true;
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
+
   @Output() onDestroy: EventEmitter<string> = new EventEmitter<string>();
   @Input() data: any;
   @Input() viewContainerRef: ViewContainerRef;
   @ViewChild('unit') unit;
 
-  constructor() {
-    Object.assign(this, {single, multi});
+  constructor(private weatherService: WeatherService) {
+    this.name = '5-day Temp.';
   }
-
   ngOnInit() {
-  }
-  onSelfDestruct() {
+    this.citySubscription = this.weatherService.city$
+      .subscribe((city) => {
+        this.city = city;
+        this.forecastSubscription = this.weatherService.dailyForecast$.subscribe((data) => {
+          const avg = [];
+          const min = [];
+          const max = [];
+          data['list']
+            .forEach((f) => {
+              avg.push({name: new Date(f.dt * 1000), value: f.temp.day});
+              min.push({name: new Date(f.dt * 1000), value: f.temp.min});
+              max.push({name: new Date(f.dt * 1000), value: f.temp.max});
+            });
+          this.graphData = [{name: 'Min', series: min}, {name: 'Max', series: max}];
+        });
+      });
   }
 
+  onSelfDestruct() {}
+
+  ngOnDestroy() {
+    this.forecastSubscription.unsubscribe();
+  }
 }

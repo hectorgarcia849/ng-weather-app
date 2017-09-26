@@ -8,7 +8,4 @@ export class AbstractFunctionalUnit {
   @Input() viewContainerRef: ViewContainerRef;
   constructor() {}
 
-  onSelfDestruct() {
-    // this.onDestroy.emit(this.name);
-  }
 }

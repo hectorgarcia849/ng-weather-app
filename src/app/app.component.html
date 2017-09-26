@@ -31,8 +31,8 @@
         *ngFor="let tile of tiles; let i = index;"
         [colspan]="tile.cols"
         [rowspan]="tile.rows"
-        [style.background]="tile.color" (click)="onRemoveUnit(i)">
-          <ng-template host></ng-template>
+        [style.background]="tile.color" (click)="onRemoveUnit(i)" style="padding:0">
+          <ng-template host style="width:100%;height:100%"></ng-template>
       </md-grid-tile>
     </md-grid-list>
   </div>
