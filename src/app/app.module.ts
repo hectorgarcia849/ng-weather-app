@@ -17,7 +17,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {WeatherService} from "./services/weather.service";
 import {MomentModule} from "angular2-moment";
-import {ChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -41,8 +40,7 @@ import {ChartsModule} from "ng2-charts";
     NgxChartsModule,
     ReactiveFormsModule,
     FormsModule,
-    MomentModule,
-    ChartsModule
+    MomentModule
   ],
   providers: [DataVisualizationService, WeatherService],
   bootstrap: [AppComponent],

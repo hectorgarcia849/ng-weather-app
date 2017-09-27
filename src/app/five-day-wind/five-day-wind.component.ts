@@ -3,6 +3,7 @@ import {AbstractFunctionalUnit} from '../utils/functional-unit/functional-unit.c
 import {WeatherService} from '../services/weather.service';
 import {Subscription} from 'rxjs/Subscription';
 import * as moment from 'moment';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-five-day-wind',
@@ -13,6 +14,7 @@ export class FiveDayWindComponent implements OnInit, AbstractFunctionalUnit {
   name = 'five-day Wind';
   forecastSubscription: Subscription;
   citySubscription: Subscription;
+  feedSubscription: Subscription;
   graphDataWD: Object[] = [];
   graphDataWS: Object[] = [];
   city: string;
@@ -29,7 +31,7 @@ export class FiveDayWindComponent implements OnInit, AbstractFunctionalUnit {
   yAxisLabel = 'Degrees';
   xAxisLabelBar = 'Wind Speed';
   yAxisLabelBar = 'meter/sec';
-  viewBar: any[] = [600, 300]
+  viewBar: any[] = [600, 300];
 
   @Output() onDestroy: EventEmitter<string> = new EventEmitter<string>();
   @Input() data: any = '';
@@ -42,7 +44,6 @@ export class FiveDayWindComponent implements OnInit, AbstractFunctionalUnit {
       .subscribe((city) => {
         this.city = city;
         this.forecastSubscription = this.weatherService.hourlyForecast$.subscribe((data) => {
-          //const windDirection = [];
           const windSpeed = [];
           const windDirectionSeries = [
             {name: 'N', value: 0},
@@ -70,21 +71,18 @@ export class FiveDayWindComponent implements OnInit, AbstractFunctionalUnit {
             {name: 'ws4to5', series: windDirectionSeries.slice()},
             {name: 'wsAbove5', series: windDirectionSeries.slice()},
           ];
-          console.log(windDirection);
           const present = new Date().getTime();
           data['list']
             .forEach((f) => {
               if (f.dt * 1000 > present) {
                 const datetime = moment(new Date(f.dt * 1000).toISOString()).format('ddd [at] h:mm a');
-                //windDirection.push({name: f.wind.deg, value: f.wind.speed});
                 windSpeed.push({name: datetime, value: f.wind.speed});
                 windDirection[this.classifyWindSpeedByIndex(f.wind.speed)].series[this.classifyWindDirectionByIndex(f.wind.deg)].value++;
               }
             });
-          //this.graphDataWD = [{ name: 'Wind Direction', series: windDirection.slice(1, 10)}];
+
+          this.timedWSDataCycle(windSpeed);
           this.graphDataWD = windDirection;
-          this.graphDataWS = windSpeed.slice(1, 20);
-          console.log(this.graphDataWD);
         });
       });
   }
@@ -109,6 +107,24 @@ export class FiveDayWindComponent implements OnInit, AbstractFunctionalUnit {
         return i;
       }
     }
+  }
+
+  timedWSDataCycle(data) {
+
+    let i = 0;
+    let j = 8;
+    this.feedSubscription = Observable.timer(0, 4000).subscribe(() => {
+      this.graphDataWS = data.slice(i, j);
+      i += 8;
+      j += 8;
+      if (i >= data.length) {
+        i = 0;
+        j = 7;
+      }
+      if (j > data.length) {
+        j = data.length - 1;
+      }
+    });
   }
 
   onSelfDestruct() {
