@@ -1,0 +1,24 @@
+md-grid-tile {
+  border: 1px solid pink;
+}
+
+#header-container {
+  border: 1px solid;
+  color:#ffb3ff;
+}
+
+#title {
+  color:#ffb3ff;
+  font-family: 'Monoton', cursive;
+  font-size:36pt;
+  background-blend-mode:overlay;
+  text-align:center;
+  margin-top: 15px;
+}
+
+#grid-title {
+  color:whitesmoke;
+  text-align:center;
+  font-family: 'Monoton', cursive;
+  color:#ffb3ff;
+}

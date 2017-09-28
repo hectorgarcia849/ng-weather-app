@@ -1,6 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {WeatherService} from "../services/weather.service";
+import {MapService} from "../services/map.service";
+import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
@@ -9,16 +11,17 @@ import {WeatherService} from "../services/weather.service";
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  myControl: FormControl = new FormControl();
-
-  options = ['Toronto', 'Port Credit', 'Brampton'];
-
-  constructor(private weatherService: WeatherService) { }
-
+  addressSubscription: Subscription;
+  constructor(private mapService: MapService) { }
+  @ViewChild('input_text')input_text;
   ngOnInit() {
+    this.addressSubscription = this.mapService.selectedAddress$
+      .subscribe((location) => { console.log(location); this.input_text = location; });
   }
   onSelection(option: string) {
-    this.weatherService.updateCity(option);
+  }
+  onCityEntered() {
+    this.mapService.updateMarker(this.input_text);
   }
 
 }

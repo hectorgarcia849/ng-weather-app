@@ -1,24 +1,49 @@
 import {
-  AfterViewInit, Component, OnDestroy, Renderer2, ViewChildren, ViewContainerRef
+  AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewChildren, ViewContainerRef
 } from '@angular/core';
-import {MdGridTile, MdOption, MdSelect} from '@angular/material';
+import {MdSelect} from '@angular/material';
 import {HostDirective} from '../host.directive';
 import {DataVisualizationService} from './services/data-visualization.service';
+import * as L from 'leaflet';
+import {GeocodeService} from "./services/geocode.service";
+import {MapService} from "./services/map.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   functionalUnitsList: string[] = ['5-day Humidity', '5-day Precipitation', '5-day Temp.', '5-day Wind'];
   @ViewChildren('gridTile') gridTile;
   @ViewChildren(HostDirective) host;
-
+  options;
   tiles = [];
-
-  constructor(private dataVisualizationService: DataVisualizationService) {
+  constructor(private dataVisualizationService: DataVisualizationService,
+              private mapService: MapService) {
+  }
+  ngOnInit() {
+    this.options = {
+      layers: [
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
+      ],
+      zoom: 5,
+      center: L.latLng([ 46.879966, -121.726909 ])
+    };
+  }
+  onMapReady(map: L.Map) {
+    this.mapService.setMapReference(map);
+    // this.layersControl = {
+    //   baseLayers: {
+    //     'Open Street Map': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
+    //     'Open Cycle Map': L.tileLayer('http://{s}.tile.opencyclemap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+    //   },
+    //   overlays: {
+    //     'Big Circle': L.circle([ 46.95, -122 ], { radius: 5000 }),
+    //     'Big Square': L.polygon([[ 46.8, -121.55 ], [ 46.9, -121.55 ], [ 46.9, -121.7 ], [ 46.8, -121.7 ]])
+    //   }
+    // };
   }
 
   ngOnDestroy() {
@@ -34,8 +59,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       const index = this.functionalUnitsList.indexOf(select.value);
       const selected = this.functionalUnitsList.splice(index, 1)[0];
       // and create a new tile
-      this.tiles.push({text: 'One', cols: 2, rows: 2, color: '#262626', child: selected});
-      // places the code below in the callback queue, to ensure that the parent tile is rendered prior to attaching the component as a child.
+      this.tiles.push({text: 'One', cols: 1, rows: 1, color: '#262626', child: selected});
+      // places the code below in the callback queue, to ensure that the parent tile is rendered
+      // prior to attaching the component as a child.
       setTimeout(() => {
         const hosts: HostDirective[] = this.host.toArray();
         let viewContainerRef: ViewContainerRef;
@@ -61,7 +87,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     }
   }
 }
-
 
 //const unit = {name: selected, component: this.functionalUnitService.functionalUnitFactory(selected, viewContainerRef), viewContainerRef};
 //this.selectedFunctionalUnits.push(unit);

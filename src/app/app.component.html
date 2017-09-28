@@ -1,49 +1,80 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <header>
-    <h1 style="color:whitesmoke">
-      Weather Guardian
-    </h1>
-  </header>
+
+
+<div class="row">
+  <div class="col-md-1"></div>
+    <div id="header-container" class="col-md-10">
+      <header style="height:80px;">
+        <h1 id="title">
+          Weather Guardian
+        </h1>
+      </header>
+    </div>
+  <div class="col-md-1"></div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div class="col-md-2"><app-search></app-search></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-2"><md-select placeholder="Measurement Mode"></md-select></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-3">
+      <md-select placeholder="Construct Your Dashboard" (onClose)="onUnitSelection(select)" #select>
+        <md-option>None</md-option>
+        <md-option *ngFor="let functionalUnit of functionalUnitsList" [value]="functionalUnit" #option>{{functionalUnit}}</md-option>
+      </md-select>
+    </div>
+  </div>
+  <div class="col-md-1">
+  </div>
 </div>
 
 <div class="row">
-  <div class="col-xs-5"></div>
-  <div class="col-xs-2"><app-search></app-search></div>
-  <div class="col-xs-2"></div>
-  <div class="col-xs-3">
-    <md-select placeholder="Construct Your Dashboard" (onClose)="onUnitSelection(select)" #select style="">
-      <md-option>None</md-option>
-      <md-option *ngFor="let functionalUnit of functionalUnitsList" [value]="functionalUnit" #option>{{functionalUnit}}</md-option>
-    </md-select>
+  <div class="col-md-1"></div>
+  <div class="col-md-1">
+    <button outline>Collapse</button>
   </div>
-  <div class="col-xs-6" style="color:red"></div>
+  <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <div style="height: 350px; width:100%; margin:0px; padding:0px"
+             leaflet
+             [leafletOptions]="options"
+              (leafletMapReady)="onMapReady($event)"
+        >
+        </div>
+    </div>
+  <div class="col-md-4"></div>
 </div>
 
+  <!--[leafletLayers]="layers"-->
+  <!--[leafletLayersControl]="layersControl"-->
 
-<!--<function-unit (onDestroy)="onRemoveUnit($event)"></function-unit>-->
+<div class="row">
+  <div class="col-md-12" style="height:15px"></div>
+</div>
 
-<div class="row" style="color:pink">
-  <div class="col-md-1" style="color:blue"></div>
-  <div class="col-md-10">
-
-
-
-      <md-grid-list cols="4" rowHeight="300px">
-          <md-grid-tile
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10" style="border: 1px solid white; height:400px">
+      <md-grid-list cols="4" rowHeight="1:1" gutterSize="0">
+        <md-grid-tile-header id="grid-title"><h1>Dashboard</h1></md-grid-tile-header>
+        <md-grid-tile
             #gridTile
             *ngFor="let tile of tiles; let i = index;"
             [colspan]="tile.cols"
             [rowspan]="tile.rows"
             [style.background]="tile.color"
             (click)="onRemoveUnit(i)"
-            style="padding:0"
-          >
-            <ng-template host style="width:100%;height:100%"></ng-template>
-          </md-grid-tile>
+        >
+            <ng-template host></ng-template>
+        </md-grid-tile>
       </md-grid-list>
-
-
   </div>
-  <div class="col-md-1" style="color:blue"></div>
+  <div class="col-md-1"></div>
+</div>
+<div class="row">
+  <div class="col-md-12" style="height:100px"></div>
 </div>

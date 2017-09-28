@@ -17,6 +17,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {WeatherService} from "./services/weather.service";
 import {MomentModule} from "angular2-moment";
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import {GeocodeService} from "./services/geocode.service";
+import {MapService} from "./services/map.service";
 
 
 @NgModule({
@@ -40,9 +43,10 @@ import {MomentModule} from "angular2-moment";
     NgxChartsModule,
     ReactiveFormsModule,
     FormsModule,
-    MomentModule
+    MomentModule,
+    LeafletModule
   ],
-  providers: [DataVisualizationService, WeatherService],
+  providers: [DataVisualizationService, WeatherService, GeocodeService, MapService],
   bootstrap: [AppComponent],
   entryComponents: [FiveDayTempComponent, FiveDayHumidityComponent, FiveDayPrecipitationComponent, FiveDayWindComponent]
 })

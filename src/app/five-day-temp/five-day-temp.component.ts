@@ -15,13 +15,11 @@ import {Subscription} from "rxjs/Subscription";
 export class FiveDayTempComponent implements OnInit, OnDestroy, AbstractFunctionalUnit {
 
   forecastSubscription: Subscription;
-  citySubscription: Subscription;
   graphData: Object[] = [];
-  city: string;
   name: string;
 
   // options
-  view = [600, 600];
+  view = [300, 300];
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -44,22 +42,18 @@ export class FiveDayTempComponent implements OnInit, OnDestroy, AbstractFunction
     this.name = '5-day Temp.';
   }
   ngOnInit() {
-    this.citySubscription = this.weatherService.city$
-      .subscribe((city) => {
-        this.city = city;
-        this.forecastSubscription = this.weatherService.dailyForecast$.subscribe((data) => {
-          const avg = [];
-          const min = [];
-          const max = [];
-          data['list']
-            .forEach((f) => {
-              avg.push({name: new Date(f.dt * 1000), value: f.temp.day});
-              min.push({name: new Date(f.dt * 1000), value: f.temp.min});
-              max.push({name: new Date(f.dt * 1000), value: f.temp.max});
-            });
-          this.graphData = [{name: 'Min', series: min}, {name: 'Max', series: max}];
+    this.forecastSubscription = this.weatherService.dailyForecast$.subscribe((data) => {
+      const avg = [];
+      const min = [];
+      const max = [];
+      data['list']
+        .forEach((f) => {
+          avg.push({name: new Date(f.dt * 1000), value: f.temp.day});
+          min.push({name: new Date(f.dt * 1000), value: f.temp.min});
+          max.push({name: new Date(f.dt * 1000), value: f.temp.max});
         });
-      });
+      this.graphData = [{name: 'Min', series: min}, {name: 'Max', series: max}];
+    });
   }
 
   onSelfDestruct() {}

@@ -1,10 +1,15 @@
-<form class="example-form">
-  <md-form-field class="example-full-width">
-    <input mdInput type="text" placeholder="Pick a city..." aria-label="Number" [formControl]="myControl" [mdAutocomplete]="auto">
-    <md-autocomplete #auto="mdAutocomplete" (optionSelected)="onSelection($event.option.value)">
-      <md-option *ngFor="let option of options" [value]="option">
-        {{ option }}
-      </md-option>
-    </md-autocomplete>
+<!--<form class="example-form">-->
+  <!--<md-form-field class="example-full-width">-->
+    <!--<input mdInput type="text" placeholder="Pick a city..." aria-label="Number" [formControl]="myControl" [mdAutocomplete]="auto">-->
+    <!--<md-autocomplete #auto="mdAutocomplete" (optionSelected)="onSelection($event.option.value)">-->
+      <!--<md-option *ngFor="let option of options" [value]="option">-->
+        <!--{{ option }}-->
+      <!--</md-option>-->
+    <!--</md-autocomplete>-->
+  <!--</md-form-field>-->
+<!--</form>-->
+<form (ngSubmit)="onCityEntered()">
+  <md-form-field>
+    <input mdInput name="input_text" placeholder="Enter an address..." type="text" [(ngModel)]="input_text" style="width:100%">
   </md-form-field>
 </form>
