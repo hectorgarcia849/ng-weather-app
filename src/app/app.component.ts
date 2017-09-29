@@ -5,8 +5,8 @@ import {MdSelect} from '@angular/material';
 import {HostDirective} from '../host.directive';
 import {DataVisualizationService} from './services/data-visualization.service';
 import * as L from 'leaflet';
-import {GeocodeService} from "./services/geocode.service";
 import {MapService} from "./services/map.service";
+import {GeocodeService} from "./services/geocode.service";
 
 @Component({
   selector: 'app-root',
@@ -18,20 +18,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   functionalUnitsList: string[] = ['5-day Humidity', '5-day Precipitation', '5-day Temp.', '5-day Wind'];
   @ViewChildren('gridTile') gridTile;
   @ViewChildren(HostDirective) host;
-  options;
   tiles = [];
   constructor(private dataVisualizationService: DataVisualizationService,
-              private mapService: MapService) {
-  }
-  ngOnInit() {
-    this.options = {
-      layers: [
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
-      ],
-      zoom: 5,
-      center: L.latLng([ 46.879966, -121.726909 ])
-    };
-  }
+              private mapService: MapService,
+              private geocodeService: GeocodeService) {}
+  ngOnInit() {}
   onMapReady(map: L.Map) {
     this.mapService.setMapReference(map);
     // this.layersControl = {
@@ -59,7 +50,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       const index = this.functionalUnitsList.indexOf(select.value);
       const selected = this.functionalUnitsList.splice(index, 1)[0];
       // and create a new tile
-      this.tiles.push({text: 'One', cols: 1, rows: 1, color: '#262626', child: selected});
+      this.tiles.push({text: 'One', cols: 1, rows: 1, color: 'white', child: selected});
       // places the code below in the callback queue, to ensure that the parent tile is rendered
       // prior to attaching the component as a child.
       setTimeout(() => {

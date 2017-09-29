@@ -43,7 +43,7 @@ export class FiveDayHumidityComponent implements OnInit, OnDestroy, AbstractFunc
       data['list']
         .forEach((f) => {
           if (f.dt * 1000 > present) {
-            const datetime = moment(new Date(f.dt * 1000).toISOString()).format('ddd [at] h:mm a');
+            const datetime = moment(new Date(f.dt * 1000).toISOString()).format('ddd [@] h:mm a');
             humidity.push({name: datetime, value: f.main.humidity});
           }
         });

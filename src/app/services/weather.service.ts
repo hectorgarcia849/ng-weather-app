@@ -3,7 +3,7 @@ import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
 import {Subscription} from "rxjs/Subscription";
 import {ReplaySubject} from "rxjs/ReplaySubject";
-import {OPENWEATHER_API_KEY} from '../../../tokens.js'
+import {OPENWEATHER_API_KEY} from '../../../tokens.js';
 import {GeocodeService} from "./geocode.service";
 
 @Injectable()
