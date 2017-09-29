@@ -1,27 +1,46 @@
 md-grid-tile {
-  border: 1px solid pink;
+  background-color: transparent;
+  -webkit-animation-name: component_animate; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+  animation-name: component_animate;
+  animation-duration: 2s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes component_animate {
+  from {opacity: 0.0;}
+  to {opacity: 1.0;}
+}
+
+/* Standard syntax */
+@keyframes component_animate {
+  from {opacity: 0.0;}
+  to {opacity: 1.0;}
 }
 
 #header-container {
-  border: 1px solid;
-  color:#ffb3ff;
+  height: 80px;
 }
 
 #title {
   color:#ffb3ff;
   font-family: 'Monoton', cursive;
-  font-size:36pt;
+  font-size:48pt;
   background-blend-mode:overlay;
-  text-align:center;
   margin-top: 15px;
+  text-align:center;
 }
 
 #grid-title {
-  color:whitesmoke;
-  text-align:center;
   font-family: 'Monoton', cursive;
-  color:#ffb3ff;
+  color: white;
+  text-align:center;
+
 }
 
 #map {
+  -webkit-animation-name: component_animate; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+  animation-name: component_animate;
+  animation-duration: 2s;
 }

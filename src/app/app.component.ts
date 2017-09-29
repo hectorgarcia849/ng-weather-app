@@ -18,10 +18,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   functionalUnitsList: string[] = ['5-day Humidity', '5-day Precipitation', '5-day Temp.', '5-day Wind'];
   locationSubscription;
   isLocationSet = false;
-  @ViewChildren('gridTile') gridTile;
-  @ViewChildren(HostDirective) host;
   tiles = [];
   mapOptions;
+  modes = ['metric', 'imperial'];
+  selectedMode = this.modes[0];
+
+  @ViewChildren('gridTile') gridTile;
+  @ViewChildren(HostDirective) host;
   constructor(private dataVisualizationService: DataVisualizationService,
               private mapService: MapService,
               private geocodeService: GeocodeService) {
