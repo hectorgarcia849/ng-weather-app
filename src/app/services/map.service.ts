@@ -3,30 +3,34 @@ import * as L from 'leaflet';
 import * as mapbox from 'mapbox-gl';
 import {Injectable} from "@angular/core";
 import {GeocodeService} from "./geocode.service";
-import {ReplaySubject} from "rxjs/ReplaySubject";
-import {DomSanitizer} from "@angular/platform-browser"
+
 
 @Injectable()
 
 export class MapService {
+  private mapOptions;
+  private map;
+  private marker;
+  // layersControl;
+  // layers;
 
-  private selectedAddressSubject = new ReplaySubject<string>(1);
-  selectedAddress$ = this.selectedAddressSubject.asObservable();
-  map;
-  marker;
-  layersControl;
-  layers;
-
-  constructor(private geocodeService: GeocodeService,
-              private santizer: DomSanitizer) {
+  constructor(private geocodeService: GeocodeService) {
+    this.mapOptions = {
+      layers: [
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+      ],
+        zoom: 5,
+      center: L.latLng([ 46.879966, -121.726909 ])
+    };
   }
-
   setMapReference(map: L.Map) {
     this.map = map;
     const iconUrl = '../assets/image/marker-icon.png';
     const shadowUrl = '../assets/image/marker-shadow.png';
+    const init_lat = 46.879966;
+    const init_lng = -121.726909;
     this.marker = new L.Marker(
-      [ 46.879966, -121.726909 ],
+      [ init_lat, init_lng ],
       {icon: L.icon(
         { iconUrl,
           shadowUrl,
@@ -34,8 +38,9 @@ export class MapService {
           iconAnchor: [24, 48] })
       }
     );
-
-    this.marker.addTo(map);
+    this.geocodeService.reverseGeocodeRequest(init_lat.toString(), init_lng.toString(), (newAddress) => {
+      this.marker.addTo(map);
+    });
 
     mapbox.accessToken = MAPBOX_API_TOKEN;
     const mapboxURL = 'mapbox://styles/mapbox/dark-v9';
@@ -58,11 +63,18 @@ export class MapService {
             })
           }]);
 
-      this.marker.addTo(map);
       return this.geocodeService.reverseGeocodeRequest(lat, lng, (newAddress) => {
-        this.updateSelectedAddress(newAddress);
+        this.marker.addTo(map);
       });
     });
+  }
+
+  getMapOptions() {
+    return this.mapOptions;
+  }
+
+  getMapReference() {
+    return this.map;
   }
 
   updateMarker(newAddress: string) {
@@ -81,8 +93,5 @@ export class MapService {
         this.map.flyTo([lat, lng], 12);
         this.marker.addTo(this.map).bindPopup("some message");
       });
-  }
-  updateSelectedAddress(address: string) {
-    this.selectedAddressSubject.next(address);
   }
 }

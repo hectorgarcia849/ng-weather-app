@@ -1,8 +1,7 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {FormControl} from "@angular/forms";
-import {WeatherService} from "../services/weather.service";
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MapService} from "../services/map.service";
 import {Subscription} from "rxjs/Subscription";
+import {GeocodeService} from "../services/geocode.service";
 
 
 @Component({
@@ -11,14 +10,12 @@ import {Subscription} from "rxjs/Subscription";
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  addressSubscription: Subscription;
-  constructor(private mapService: MapService) { }
+  locationSubscription: Subscription;
+  constructor(private geocodeService: GeocodeService, private mapService: MapService) { }
   @ViewChild('input_text')input_text;
   ngOnInit() {
-    this.addressSubscription = this.mapService.selectedAddress$
-      .subscribe((location) => { console.log(location); this.input_text = location; });
-  }
-  onSelection(option: string) {
+    this.locationSubscription = this.geocodeService.selectedLocation$
+      .subscribe((location) => { console.log(location); this.input_text = location.location; });
   }
   onCityEntered() {
     this.mapService.updateMarker(this.input_text);

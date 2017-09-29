@@ -24,7 +24,7 @@
     <div class="col-md-2"><md-select placeholder="Measurement Mode"></md-select></div>
     <div class="col-md-2"></div>
     <div class="col-md-3">
-      <md-select placeholder="Construct Your Dashboard" (onClose)="onUnitSelection(select)" #select>
+      <md-select placeholder="Construct Your Dashboard" (onClose)="onUnitSelection(select)" #select [disabled]="!isLocationSet">
         <md-option>None</md-option>
         <md-option *ngFor="let functionalUnit of functionalUnitsList" [value]="functionalUnit" #option>{{functionalUnit}}</md-option>
       </md-select>
@@ -47,7 +47,7 @@
     <div class="col-md-4">
         <div id="map" style="height: 350px; width:100%; margin:0px; padding:0px"
              leaflet
-             [leafletOptions]="options"
+             [leafletOptions]="mapOptions"
              (leafletMapReady)="onMapReady($event)"
         >
         </div>

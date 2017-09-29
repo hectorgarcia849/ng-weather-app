@@ -16,25 +16,28 @@ import {GeocodeService} from "./services/geocode.service";
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   functionalUnitsList: string[] = ['5-day Humidity', '5-day Precipitation', '5-day Temp.', '5-day Wind'];
+  locationSubscription;
+  isLocationSet = false;
   @ViewChildren('gridTile') gridTile;
   @ViewChildren(HostDirective) host;
   tiles = [];
+  mapOptions;
   constructor(private dataVisualizationService: DataVisualizationService,
               private mapService: MapService,
-              private geocodeService: GeocodeService) {}
-  ngOnInit() {}
+              private geocodeService: GeocodeService) {
+  }
+  ngOnInit() {
+    this.mapOptions = this.mapService.getMapOptions();
+    this.locationSubscription = this.geocodeService.selectedLocation$.subscribe((location) => {
+      if (location) {
+        this.isLocationSet = true;
+      } else {
+        this.isLocationSet = false;
+      }
+    });
+  }
   onMapReady(map: L.Map) {
     this.mapService.setMapReference(map);
-    // this.layersControl = {
-    //   baseLayers: {
-    //     'Open Street Map': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
-    //     'Open Cycle Map': L.tileLayer('http://{s}.tile.opencyclemap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
-    //   },
-    //   overlays: {
-    //     'Big Circle': L.circle([ 46.95, -122 ], { radius: 5000 }),
-    //     'Big Square': L.polygon([[ 46.8, -121.55 ], [ 46.9, -121.55 ], [ 46.9, -121.7 ], [ 46.8, -121.7 ]])
-    //   }
-    // };
   }
 
   ngOnDestroy() {
@@ -42,7 +45,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
   }
-
   onUnitSelection(select: MdSelect) {
 
     if (this.functionalUnitsList.indexOf(select.value) >= 0) {
