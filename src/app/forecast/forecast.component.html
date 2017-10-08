@@ -1,0 +1,39 @@
+
+<h1 class="grid-title bottom-space">{{city}}</h1>
+
+<div>
+  <md-grid-list
+    cols="5" rowHeight="1:1" gutterSize="10">
+    <md-grid-tile class="tile-forecast"
+      *ngFor="let ftile of fiveForecastTiles; let i = index;"
+      [colspan]="tileProp.cols"
+      [rowspan]="tileProp.rows"
+      [style.background]="tileProp.color"
+      [style.margin]="0">
+
+
+      <div id="tile-forecast-content-date">
+        <p id="tile-forecast-content-date-p">{{ftile.date}}</p>
+      </div>
+
+      <div id="tile-forecast-content-day">
+        <h3 id="tile-forecast-content-day-h3">{{ ftile.temp.day }}{{ degrees }}</h3>
+      </div>
+
+      <div id="tile-forecast-content-icon">
+        <svg-icon id="tile-forecast-content-icon-svg" [src]="selectIcon(ftile.icon)"></svg-icon>
+      </div>
+
+      <div id="tile-forecast-content-description">
+        <p id="tile-forecast-content-description-p">{{ ftile.description | titlecase}}</p>
+      </div>
+
+      <div id="tile-forecast-content-summary">
+        <p>max: {{ ftile.temp.max }}{{ degrees }} min: {{ ftile.temp.min }}{{ degrees }} <br />day: {{ ftile.temp.day }}{{ degrees }} night: {{ ftile.temp.night }}{{ degrees }}</p>
+      </div>
+
+    </md-grid-tile>
+  </md-grid-list>
+</div>
+
+

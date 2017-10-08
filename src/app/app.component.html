@@ -1,96 +1,35 @@
 
-<div class="row">
-  <div class="col-md-12" style="height:20px"></div>
-</div>
-<div class="row">
-  <div class="col-md-1"></div>
-    <div id="header-container" class="col-md-10">
-        <h1 id="title">
-          Weather Guardian
-        </h1>
-    </div>
-  <div class="col-md-1"></div>
-</div>
-
-<div class="row">
-  <div class="col-md-12" style="height:100px"></div>
-</div>
-
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
-    <div class="col-md-12">
-      <app-search></app-search>
-    </div>
+<!--header-->
+<div class="container" id="container-header">
+  <div id="container-header-menu">
+    <md-menu #appMenu="mdMenu">
+      <button md-menu-item *ngFor="let mode of modes" (click)="onModeChange(mode)">{{mode}}</button>
+    </md-menu>
+    <button md-icon-button [mdMenuTriggerFor]="appMenu">
+      <md-icon id="icon-header-menu">menu</md-icon>
+    </button>
   </div>
-  <div class="col-md-1">
-  </div>
+    <h1 id="title">Weather Guardian</h1>
 </div>
 
-<div class="row">
-  <div class="col-md-12" style="height:7px"></div>
-</div>
+<div>
+  <div>
+    <!--map and forecast-->
+    <div class="container" id="container-map-forecast">
+      <app-map></app-map>
 
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-5">
-    <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <div id="map" style="height: 450px; width:100%; margin:0px; padding:0px"
-             leaflet
-             [leafletOptions]="mapOptions"
-             (leafletMapReady)="onMapReady($event)">
-        </div>
-      </div>
-    <div class="col-md-1"></div>
-
-
-    <div class="row">
-      <div class="col-md-12" style="height:7px"></div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="col-md-1"></div>
-        <div class="col-md-11">
-          <md-select placeholder="Units" [(ngModel)]="selectedMode" name="measurementMode">
-            <md-option *ngFor="let mode of modes; let i = index" [value]="mode">{{mode}}</md-option>
-          </md-select>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="col-md-1"></div>
-          <div class="col-md-10">
-            <md-select placeholder="Construct Your Dashboard" (onClose)="onUnitSelection(unitSelected)" #unitSelected [disabled]="!isLocationSet">
-              <md-option>None</md-option>
-              <md-option *ngFor="let functionalUnit of functionalUnitsList" [value]="functionalUnit" #option>{{functionalUnit}}</md-option>
-            </md-select>
-          </div>
-        <div class="col-md-1"></div>
+      <!--forecast-->
+      <div class="bottom-space">
+        <app-forecast></app-forecast>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12" style="height:20px"></div>
+
+    <!--dashboard-->
+    <div class="container" id="container-dashboard">
+      <app-dashboard></app-dashboard>
     </div>
   </div>
-
-  <div class="col-md-5" style="height:700px">
-    <md-grid-list cols="2" rowHeight="1:1" gutterSize="0">
-      <md-grid-tile-header id="grid-title"><h1>Dashboard</h1></md-grid-tile-header>
-      <md-grid-tile
-        #gridTile
-        *ngFor="let tile of tiles; let i = index;"
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows"
-        [style.background]="tile.color"
-        (click)="onRemoveUnit(i)">
-        <ng-template host></ng-template>
-      </md-grid-tile>
-    </md-grid-list>
-  </div>
 </div>
-
-<div class="row">
-  <div class="col-md-12" style="height:20px">
-    <p style="text-align: center; color: white">Hector Garcia Production</p>
-  </div>
+<div id="container-footer">
+  <p id="title-footer">Hector Garcia Production</p>
 </div>

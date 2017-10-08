@@ -1,0 +1,30 @@
+<md-grid-list [cols]="col" rowHeight="1:1" gutterSize="10" style="margin:0">
+  <md-grid-tile-header>
+    <h1 class="grid-title bottom-space">Dashboard</h1>
+    <div class="bottom-space">
+      <md-select id="input-dashboard-select" placeholder="Construct Your Dashboard" (onClose)="onUnitSelection(unitSelected)" #unitSelected [disabled]="!isLocationSet">
+        <md-option>None</md-option>
+        <md-option *ngFor="let functionalUnit of functionalUnitsList" [value]="functionalUnit" #option>{{functionalUnit}}</md-option>
+      </md-select>
+    </div>
+  </md-grid-tile-header>
+  <md-grid-tile
+    #gridTile
+    *ngFor="let tile of tiles; let i = index;"
+    [colspan]="tile.cols"
+    [rowspan]="tile.rows"
+    [style.background]="tile.color">
+
+    <md-sidenav-container id="container-tile-side-nav">
+      <md-sidenav #sidenav>
+        <button md-button color='warn'(click)="onRemoveUnit(i)">Remove</button>
+      </md-sidenav>
+
+      <button md-icon-button id="button-tile-menu" (click)="sidenav.open()">
+        <md-icon>menu</md-icon>
+      </button>
+      <ng-template host></ng-template>
+    </md-sidenav-container>
+
+  </md-grid-tile>
+</md-grid-list>

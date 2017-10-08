@@ -1,0 +1,7 @@
+<form (ngSubmit)="onCityEntered()">
+  <md-form-field id="input-search">
+    <input mdInput name="input_text" placeholder="Enter an address or select a location in the map..." type="text" [(ngModel)]="input_text">
+  </md-form-field>
+  <button type="button" md-raised-button color='warn' (click)="clearInputText()">clear search</button>
+</form>
+

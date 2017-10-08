@@ -1,0 +1,21 @@
+<div class="chartContainer">
+  <ng-template #tooltipTemplate let-model="model">
+    {{model | json}}
+  </ng-template>
+
+  <ngx-charts-line-chart
+    class="dashboard-unit"
+    [scheme]="colorScheme"
+    [results]="graphData"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [showRefLines]="true"
+    [yAxisLabel]="yAxisLabel"
+    [autoScale]="autoScale">
+  </ngx-charts-line-chart>
+</div>

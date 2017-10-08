@@ -25,8 +25,8 @@ export class MapService {
   }
   setMapReference(map: L.Map) {
     this.map = map;
-    const iconUrl = '../assets/image/marker-icon.png';
-    const shadowUrl = '../assets/image/marker-shadow.png';
+    const iconUrl = 'assets/image/marker-icon.png';
+    const shadowUrl = 'assets/image/marker-shadow.png';
     const init_lat = 46.879966;
     const init_lng = -121.726909;
     this.marker = new L.Marker(
