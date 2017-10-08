@@ -2,7 +2,7 @@
 <!--header-->
 <div class="container" id="container-header">
   <div id="container-header-menu">
-    <mat-menu #appMenu="mdMenu">
+    <mat-menu #appMenu="matMenu">
       <button mat-menu-item *ngFor="let mode of modes" (click)="onModeChange(mode)">{{mode}}</button>
     </mat-menu>
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
