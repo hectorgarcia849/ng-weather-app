@@ -3,7 +3,7 @@ import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
 import {Subscription} from "rxjs/Subscription";
 import {ReplaySubject} from "rxjs/ReplaySubject";
-import {OPENWEATHER_API_KEY} from '../../../tokens.js';
+import {environment} from '../../environments/environment';
 import {GeocodeService} from "./geocode.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {MdSnackBar, MdSnackBarConfig} from "@angular/material";
@@ -71,12 +71,12 @@ export class WeatherService {
   }
 
   private getDailyForecast(lat: string, lng: string): Observable<any> {
-    const query = `/daily?lat=${lat}&lon=${lng}&cnt=16&units=${this.mode}&appid=${OPENWEATHER_API_KEY}`;
+    const query = `/daily?lat=${lat}&lon=${lng}&cnt=16&units=${this.mode}&appid=${environment.OPENWEATHER_API_KEY}`;
     return this.http.get(`${this.url}${query}`);
   }
 
   private getHourlyForecast(lat: string, lng: string): Observable<any> {
-    const query = `?lat=${lat}&lon=${lng}&units=${this.mode}&appid=${OPENWEATHER_API_KEY}`;
+    const query = `?lat=${lat}&lon=${lng}&units=${this.mode}&appid=${environment.OPENWEATHER_API_KEY}`;
     return this.http.get(`${this.url}${query}`);
   }
   updateMeasurementMode(mode: string) {

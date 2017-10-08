@@ -1,4 +1,4 @@
-import {OPENCAGE_API_KEY} from '../../../tokens.js';
+import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from "@angular/core";
 import {ReplaySubject} from "rxjs/ReplaySubject";
@@ -14,7 +14,7 @@ export class GeocodeService {
   constructor (private http: HttpClient, private mdSnackBar: MdSnackBar) {}
 
   reverseGeocodeRequest(lat: string, lng: string, callback: (newAddress) => void) {
-    this.http.get(`${this.url}q=${lat}+${lng}&key=${OPENCAGE_API_KEY}`)
+    this.http.get(`${this.url}q=${lat}+${lng}&key=${environment.OPENCAGE_API_KEY}`)
       .subscribe((response) => {
         const newAddress = response['results'][0].formatted;
         this.selectedLocationSubject.next({location: newAddress, lat, lng});
@@ -22,7 +22,7 @@ export class GeocodeService {
     });
   }
   geocodeRequest(newAddress: string, callback: (lat, lng) => void) {
-    return this.http.get(`${this.url}q=${newAddress}&key=${OPENCAGE_API_KEY}`)
+    return this.http.get(`${this.url}q=${newAddress}&key=${environment.OPENCAGE_API_KEY}`)
       .subscribe(
         (response) => {
           if (response['results'].length > 0) {

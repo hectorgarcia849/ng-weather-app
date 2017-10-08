@@ -1,9 +1,8 @@
-import {MAPBOX_API_TOKEN} from '../../../tokens.js';
 import * as L from 'leaflet';
 import * as mapbox from 'mapbox-gl';
-import {Injectable} from "@angular/core";
-import {GeocodeService} from "./geocode.service";
-
+import {Injectable} from '@angular/core';
+import {GeocodeService} from './geocode.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 
@@ -11,9 +10,6 @@ export class MapService {
   private mapOptions;
   private map;
   private marker;
-  // layersControl;
-  // layers;
-
   constructor(private geocodeService: GeocodeService) {
     this.mapOptions = {
       layers: [
@@ -42,7 +38,7 @@ export class MapService {
       this.marker.addTo(map);
     });
 
-    mapbox.accessToken = MAPBOX_API_TOKEN;
+    mapbox.accessToken = environment.MAPBOX_API_TOKEN;
     const mapboxURL = 'mapbox://styles/mapbox/dark-v9';
     const greyscale = L.tileLayer(mapboxURL, {id: 'map'});
     const baseMaps = { 'Greyscale': greyscale };
@@ -72,11 +68,6 @@ export class MapService {
   getMapOptions() {
     return this.mapOptions;
   }
-
-  getMapReference() {
-    return this.map;
-  }
-
   updateMarker(newAddress: string) {
     this.map.removeLayer(this.marker);
     this.geocodeService.geocodeRequest(newAddress, (lat, lng) => {

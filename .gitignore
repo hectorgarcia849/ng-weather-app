@@ -9,7 +9,9 @@
 /node_modules
 
 # Confidential
-/tokens.js
+src/environments/environment.prod.ts
+src/environments/environment.ts
+
 
 # IDEs and editors
 /.idea
