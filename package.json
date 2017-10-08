@@ -42,7 +42,9 @@
     "moment": "^2.18.1",
     "rxjs": "^5.4.2",
     "weather-icons": "github:erikflowers/weather-icons",
-    "zone.js": "^0.8.18"
+    "zone.js": "^0.8.18",
+    "@angular/compiler-cli": "^4.4.4",
+    "typescript": "~2.2.1"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^4.4.4",
