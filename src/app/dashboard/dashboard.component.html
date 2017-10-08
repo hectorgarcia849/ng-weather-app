@@ -1,30 +1,30 @@
-<md-grid-list [cols]="col" rowHeight="1:1" gutterSize="10" style="margin:0">
-  <md-grid-tile-header>
+<mat-grid-list [cols]="col" rowHeight="1:1" gutterSize="10" style="margin:0">
+  <mat-grid-tile-header>
     <h1 class="grid-title bottom-space">Dashboard</h1>
     <div class="bottom-space">
-      <md-select id="input-dashboard-select" placeholder="Construct Your Dashboard" (onClose)="onUnitSelection(unitSelected)" #unitSelected [disabled]="!isLocationSet">
-        <md-option>None</md-option>
-        <md-option *ngFor="let functionalUnit of functionalUnitsList" [value]="functionalUnit" #option>{{functionalUnit}}</md-option>
-      </md-select>
+      <mat-select id="input-dashboard-select" placeholder="Construct Your Dashboard" (onClose)="onUnitSelection(unitSelected)" #unitSelected [disabled]="!isLocationSet">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let functionalUnit of functionalUnitsList" [value]="functionalUnit" #option>{{functionalUnit}}</mat-option>
+      </mat-select>
     </div>
-  </md-grid-tile-header>
-  <md-grid-tile
+  </mat-grid-tile-header>
+  <mat-grid-tile
     #gridTile
     *ngFor="let tile of tiles; let i = index;"
     [colspan]="tile.cols"
     [rowspan]="tile.rows"
     [style.background]="tile.color">
 
-    <md-sidenav-container id="container-tile-side-nav">
-      <md-sidenav #sidenav>
-        <button md-button color='warn'(click)="onRemoveUnit(i)">Remove</button>
-      </md-sidenav>
+    <mat-sidenav-container id="container-tile-side-nav">
+      <mat-sidenav #sidenav>
+        <button mat-button color='warn'(click)="onRemoveUnit(i)">Remove</button>
+      </mat-sidenav>
 
-      <button md-icon-button id="button-tile-menu" (click)="sidenav.open()">
-        <md-icon>menu</md-icon>
+      <button mat-icon-button id="button-tile-menu" (click)="sidenav.open()">
+        <mat-icon>menu</mat-icon>
       </button>
       <ng-template host></ng-template>
-    </md-sidenav-container>
+    </mat-sidenav-container>
 
-  </md-grid-tile>
-</md-grid-list>
+  </mat-grid-tile>
+</mat-grid-list>

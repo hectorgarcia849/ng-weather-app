@@ -2,7 +2,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from "@angular/core";
 import {ReplaySubject} from "rxjs/ReplaySubject";
-import {MdSnackBar, MdSnackBarConfig} from "@angular/material";
+import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
 
 @Injectable()
 
@@ -11,7 +11,7 @@ export class GeocodeService {
   private selectedLocationSubject = new ReplaySubject<{location: string, lat: string, lng: string}>(1)
   selectedLocation$ = this.selectedLocationSubject.asObservable();
 
-  constructor (private http: HttpClient, private mdSnackBar: MdSnackBar) {}
+  constructor (private http: HttpClient, private matSnackBar: MatSnackBar) {}
 
   reverseGeocodeRequest(lat: string, lng: string, callback: (newAddress) => void) {
     this.http.get(`${this.url}q=${lat}+${lng}&key=${environment.OPENCAGE_API_KEY}`)
@@ -32,10 +32,10 @@ export class GeocodeService {
             callback(lat, lng);
           } else {
             const message = `Unable to locate ${newAddress} on servers`;
-            const config = new MdSnackBarConfig();
+            const config = new MatSnackBarConfig();
             config.duration = 2500;
             config.extraClasses = ['snack-bar-message'];
-            this.mdSnackBar.open(message, null, config);
+            this.matSnackBar.open(message, null, config);
           }
         });
   }

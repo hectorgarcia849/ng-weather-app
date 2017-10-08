@@ -2,11 +2,11 @@
 <!--header-->
 <div class="container" id="container-header">
   <div id="container-header-menu">
-    <md-menu #appMenu="mdMenu">
-      <button md-menu-item *ngFor="let mode of modes" (click)="onModeChange(mode)">{{mode}}</button>
-    </md-menu>
-    <button md-icon-button [mdMenuTriggerFor]="appMenu">
-      <md-icon id="icon-header-menu">menu</md-icon>
+    <mat-menu #appMenu="mdMenu">
+      <button mat-menu-item *ngFor="let mode of modes" (click)="onModeChange(mode)">{{mode}}</button>
+    </mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon id="icon-header-menu">menu</mat-icon>
     </button>
   </div>
     <h1 id="title">Weather Guardian</h1>

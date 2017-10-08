@@ -2,9 +2,9 @@
 <h1 class="grid-title bottom-space">{{city}}</h1>
 
 <div>
-  <md-grid-list
+  <mat-grid-list
     cols="5" rowHeight="1:1" gutterSize="10">
-    <md-grid-tile class="tile-forecast"
+    <mat-grid-tile class="tile-forecast"
       *ngFor="let ftile of fiveForecastTiles; let i = index;"
       [colspan]="tileProp.cols"
       [rowspan]="tileProp.rows"
@@ -32,8 +32,8 @@
         <p>max: {{ ftile.temp.max }}{{ degrees }} min: {{ ftile.temp.min }}{{ degrees }} <br />day: {{ ftile.temp.day }}{{ degrees }} night: {{ ftile.temp.night }}{{ degrees }}</p>
       </div>
 
-    </md-grid-tile>
-  </md-grid-list>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
 
 

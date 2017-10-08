@@ -4,11 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SearchComponent } from './map/search/search.component';
 import {
-  MdAutocompleteModule, MdButtonModule, MdGridListModule, MdInputModule, MdSidenavModule, MdIconModule, MdMenuModule,
-  MdSnackBarModule
+  MatAutocompleteModule, MatButtonModule, MatGridListModule, MatInputModule, MatSidenavModule, MatIconModule, MatMenuModule,
+  MatSnackBarModule, MatSelectModule
 } from "@angular/material";
 import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MdSelectModule} from '@angular/material';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import { SixteenDayTempComponent } from './weather-charts/sixteen-day-temp/sixteen-day-temp.component';
 import {HostDirective} from "../host.directive";
@@ -49,13 +48,13 @@ import { ErrorMessageComponent } from './utils/error-message/error-message.compo
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MdGridListModule,
-    MdSelectModule,
-    MdButtonModule,
-    MdSidenavModule,
-    MdIconModule,
-    MdInputModule,
-    MdAutocompleteModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatInputModule,
+    MatAutocompleteModule,
     NgxChartsModule,
     ReactiveFormsModule,
     FormsModule,
@@ -63,8 +62,8 @@ import { ErrorMessageComponent } from './utils/error-message/error-message.compo
     LeafletModule,
     AngularSvgIconModule,
     FlexLayoutModule,
-    MdMenuModule,
-    MdSnackBarModule
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [DataVisualizationService, WeatherService, GeocodeService, MapService],
   bootstrap: [AppComponent],

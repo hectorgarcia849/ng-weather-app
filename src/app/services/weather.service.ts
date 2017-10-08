@@ -6,7 +6,7 @@ import {ReplaySubject} from "rxjs/ReplaySubject";
 import {environment} from '../../environments/environment';
 import {GeocodeService} from "./geocode.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {MdSnackBar, MdSnackBarConfig} from "@angular/material";
+import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
 
 @Injectable()
 export class WeatherService {
@@ -22,7 +22,7 @@ export class WeatherService {
   private mode = 'metric';
   private location;
   url = "http://api.openweathermap.org/data/2.5/forecast";
-  constructor(private http: HttpClient, private geocodeService: GeocodeService, private mdSnackBar: MdSnackBar) {
+  constructor(private http: HttpClient, private geocodeService: GeocodeService, private matSnackBar: MatSnackBar) {
     this.locationSubscription = this.geocodeService.selectedLocation$.subscribe((location) => {
       this.location = location;
       this.getDailyForecast(location.lat, location.lng)
@@ -84,9 +84,9 @@ export class WeatherService {
   }
   createErrorMessage() {
     const message = `Unable to retreive weathers from servers`;
-    const config = new MdSnackBarConfig();
+    const config = new MatSnackBarConfig();
     config.duration = 2500;
     config.extraClasses = ['snack-bar-message'];
-    this.mdSnackBar.open(message, null, config);
+    this.matSnackBar.open(message, null, config);
   }
 }

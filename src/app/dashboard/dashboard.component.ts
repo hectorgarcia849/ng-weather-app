@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChildren, ViewContainerRef} from '@angular/core';
-import {MdSelect} from "@angular/material";
+import {MatSelect} from "@angular/material";
 import {HostDirective} from "../../host.directive";
 import {DataVisualizationService} from "../services/data-visualization.service";
 import {GeocodeService} from "../services/geocode.service";
@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.locationSubscription.unsubscribe();
   }
 
-  onUnitSelection(select: MdSelect) {
+  onUnitSelection(select: MatSelect) {
     if (this.functionalUnitsList.indexOf(select.value) >= 0) {
       // find and remove selected unit from the options list
       const index = this.functionalUnitsList.indexOf(select.value);
