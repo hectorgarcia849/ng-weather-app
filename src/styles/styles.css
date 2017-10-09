@@ -179,12 +179,12 @@ md-grid-tile {
     width:100%;
     position: absolute;
     left:0%;
-    top:35%;
+    top:40%;
     padding: 0;
   }
 
   #tile-forecast-content-day-h3 {
-    font-size:3.0vh;
+    font-size:2.5vh;
     text-align: center;
     margin: 0;
   }
@@ -244,6 +244,10 @@ md-grid-tile {
     padding: 0;
     text-align: center;
     top: 10%;
+  }
+
+  #tile-forecast-content-day {
+    top:35%;
   }
 
   #tile-forecast-content-day-h3 {
@@ -360,6 +364,12 @@ md-grid-tile {
 
 @media only screen and (min-width: 1024px) and (min-height: 1366px) {
 
+  /*title*/
+
+  #title {
+    font-size:4.5vh;
+  }
+
   /* tiles */
 
   #tile-forecast-content-date-p {
@@ -371,7 +381,7 @@ md-grid-tile {
   }
 
   #tile-forecast-content-day-h3 {
-    font-size:3vh;
+    font-size:2.25vh;
   }
 
   #tile-forecast-content-description-p {

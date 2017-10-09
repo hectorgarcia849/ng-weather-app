@@ -2,7 +2,7 @@ import * as L from 'leaflet';
 import * as mapbox from 'mapbox-gl';
 import {Injectable} from '@angular/core';
 import {GeocodeService} from './geocode.service';
-import { environment } from '../../environments/environment';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 
@@ -11,7 +11,7 @@ export class MapService {
   private map;
   private marker;
   private icon;
-  constructor(private geocodeService: GeocodeService) {
+  constructor(private geocodeService: GeocodeService, private http: HttpClient) {
     this.icon = L.icon({
       iconUrl: '../../assets/image/marker-icon.png',
       shadowUrl: '../../assets/image/marker-shadow.png',
@@ -38,11 +38,13 @@ export class MapService {
       this.marker.addTo(map);
     });
 
-    mapbox.accessToken = environment.MAPBOX_API_TOKEN;
-    const mapboxURL = 'mapbox://styles/mapbox/dark-v9';
-    const greyscale = L.tileLayer(mapboxURL, {id: 'map'});
-    const baseMaps = { 'Greyscale': greyscale };
-    L.control.layers(baseMaps).addTo(this.map);
+    // this.http.get('/services/mapservice/token').subscribe((res) => {
+    //   mapbox.accessToken = res;
+    //   const mapboxURL = 'mapbox://styles/mapbox/dark-v9';
+    //   const greyscale = L.tileLayer(mapboxURL, {id: 'map'});
+    //   const baseMaps = { 'Greyscale': greyscale };
+    //   L.control.layers(baseMaps).addTo(this.map);
+    // });
 
     this.map.on('click', (e) => {
       const lat = e['latlng'].lat;

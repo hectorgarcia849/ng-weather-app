@@ -63,8 +63,8 @@ servicesRouter.get('/geocodeservice/geocode/request', (req, res) => {
 });
 
 
-servicesRouter.get('/mapservice', (req, res) => {
-  res.send('mapservice');
+servicesRouter.get('/mapservice/token', (req, res) => {
+  res.send(JSON.stringify(process.env.MAPBOX_API_TOKEN));
 });
 
 module.exports = {servicesRouter};
