@@ -20,7 +20,7 @@ export class MapService {
     });
     this.mapOptions = {
       layers: [
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
       ],
         zoom: 5,
       center: L.latLng([ 46.879966, -121.726909 ])
