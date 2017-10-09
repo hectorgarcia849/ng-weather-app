@@ -3,7 +3,6 @@ import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
 import {Subscription} from "rxjs/Subscription";
 import {ReplaySubject} from "rxjs/ReplaySubject";
-import {environment} from '../../environments/environment';
 import {GeocodeService} from "./geocode.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
@@ -21,14 +20,14 @@ export class WeatherService {
   private measurementModeSubscription = new Subscription();
   private mode = 'metric';
   private location;
-  url = "http://api.openweathermap.org/data/2.5/forecast";
+  url = "services/weatherservice";
   constructor(private http: HttpClient, private geocodeService: GeocodeService, private matSnackBar: MatSnackBar) {
     this.locationSubscription = this.geocodeService.selectedLocation$.subscribe((location) => {
       this.location = location;
       this.getDailyForecast(location.lat, location.lng)
         .subscribe(
-          (forecast) => {
-            this.updateDailyForecast(forecast);
+          (response) => {
+            this.updateDailyForecast(response);
           },
           (error) => {
             this.createErrorMessage();
@@ -36,8 +35,8 @@ export class WeatherService {
         );
       this.getHourlyForecast(location.lat, location.lng)
         .subscribe(
-          (forecast) => {
-            this.updateHourlyForecast(forecast);
+          (response) => {
+            this.updateHourlyForecast(response);
           },
           (error) => {
             this.createErrorMessage();
@@ -49,14 +48,14 @@ export class WeatherService {
         console.log('changed to', mode);
         this.mode = mode;
         this.getDailyForecast(this.location.lat, this.location.lng)
-          .subscribe((forecast) => {
-            this.updateDailyForecast(forecast); },
+          .subscribe((response) => {
+              this.updateDailyForecast(response); },
             (error) => {
               this.createErrorMessage();
             }
           );
-        this.getHourlyForecast(this.location.lat, this.location.lng).subscribe((forecast) => {
-          this.updateHourlyForecast(forecast);
+        this.getHourlyForecast(this.location.lat, this.location.lng).subscribe((response) => {
+          this.updateHourlyForecast(response);
         });
       }
     });
@@ -71,12 +70,12 @@ export class WeatherService {
   }
 
   private getDailyForecast(lat: string, lng: string): Observable<any> {
-    const query = `/daily?lat=${lat}&lon=${lng}&cnt=16&units=${this.mode}&appid=${environment.OPENWEATHER_API_KEY}`;
+    const query = `/daily?lat=${lat}&lng=${lng}&cnt=16&mode=${this.mode}`;
     return this.http.get(`${this.url}${query}`);
   }
 
   private getHourlyForecast(lat: string, lng: string): Observable<any> {
-    const query = `?lat=${lat}&lon=${lng}&units=${this.mode}&appid=${environment.OPENWEATHER_API_KEY}`;
+    const query = `/hourly?lat=${lat}&lng=${lng}&mode=${this.mode}`;
     return this.http.get(`${this.url}${query}`);
   }
   updateMeasurementMode(mode: string) {

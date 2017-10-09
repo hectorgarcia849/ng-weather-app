@@ -184,7 +184,7 @@ md-grid-tile {
   }
 
   #tile-forecast-content-day-h3 {
-    font-size:4.5vh;
+    font-size:3.0vh;
     text-align: center;
     margin: 0;
   }
@@ -244,6 +244,10 @@ md-grid-tile {
     padding: 0;
     text-align: center;
     top: 10%;
+  }
+
+  #tile-forecast-content-day-h3 {
+    font-size:4.5vh;
   }
 
 }

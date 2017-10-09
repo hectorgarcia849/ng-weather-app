@@ -10,7 +10,14 @@ export class MapService {
   private mapOptions;
   private map;
   private marker;
+  private icon;
   constructor(private geocodeService: GeocodeService) {
+    this.icon = L.icon({
+      iconUrl: '../../assets/image/marker-icon.png',
+      shadowUrl: '../../assets/image/marker-shadow.png',
+      iconSize:     [24, 24], // size of the icon
+      iconAnchor:   [24, 48]
+    });
     this.mapOptions = {
       layers: [
         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
@@ -21,18 +28,11 @@ export class MapService {
   }
   setMapReference(map: L.Map) {
     this.map = map;
-    const iconUrl = 'assets/image/marker-icon.png';
-    const shadowUrl = 'assets/image/marker-shadow.png';
     const init_lat = 46.879966;
     const init_lng = -121.726909;
     this.marker = new L.Marker(
       [ init_lat, init_lng ],
-      {icon: L.icon(
-        { iconUrl,
-          shadowUrl,
-          iconSize: [24, 24],
-          iconAnchor: [24, 48] })
-      }
+      {icon: this.icon}
     );
     this.geocodeService.reverseGeocodeRequest(init_lat.toString(), init_lng.toString(), (newAddress) => {
       this.marker.addTo(map);
@@ -45,20 +45,11 @@ export class MapService {
     L.control.layers(baseMaps).addTo(this.map);
 
     this.map.on('click', (e) => {
-      console.log(e['latlng']);
       const lat = e['latlng'].lat;
       const lng = e['latlng'].lng;
       this.map.removeLayer(this.marker);
       this.marker = new L.Marker(
-        [ lat, lng,
-          {icon: L.icon(
-            { iconUrl: '/assets/image/marker-icon.png',
-              shadowUrl: '/assets/image/marker-shadow.png',
-              iconSize: [24, 24],
-              iconAnchor: [24, 48]
-            })
-          }]);
-
+        [ lat, lng, {icon: this.icon}]);
       return this.geocodeService.reverseGeocodeRequest(lat, lng, (newAddress) => {
         this.marker.addTo(map);
       });
@@ -73,16 +64,9 @@ export class MapService {
     this.geocodeService.geocodeRequest(newAddress, (lat, lng) => {
         this.marker = new L.Marker(
           [ lat, lng ],
-          {icon: L.icon(
-            { iconUrl: '../assets/image/marker-icon.png',
-              shadowUrl: '../assets/image/marker-shadow.png',
-              iconSize: [24, 24],
-              iconAnchor: [24, 48],
-            })
-          }
+          {icon: this.icon}
         );
         this.map.flyTo([lat, lng], 12);
-        this.marker.addTo(this.map).bindPopup("some message");
       });
   }
 }
