@@ -10,6 +10,7 @@
 
 # Confidential
 /src/environments/environment.ts
+/server/config/config.json
 
 
 # IDEs and editors

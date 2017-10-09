@@ -2,10 +2,12 @@
   <mat-grid-tile-header>
     <h1 class="grid-title bottom-space">Dashboard</h1>
     <div class="bottom-space">
-      <mat-select id="input-dashboard-select" placeholder="Construct Your Dashboard" (onClose)="onUnitSelection(unitSelected)" #unitSelected [disabled]="!isLocationSet">
-        <mat-option>None</mat-option>
-        <mat-option *ngFor="let functionalUnit of functionalUnitsList" [value]="functionalUnit" #option>{{functionalUnit}}</mat-option>
-      </mat-select>
+      <mat-form-field>
+        <mat-select placeholder="Construct Your Dashboard" (onClose)="onUnitSelection(unitSelected)" #unitSelected [disabled]="!isLocationSet">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let functionalUnit of functionalUnitsList" [value]="functionalUnit" #option>{{functionalUnit}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </mat-grid-tile-header>
   <mat-grid-tile
