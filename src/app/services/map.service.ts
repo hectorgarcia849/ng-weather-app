@@ -1,7 +1,6 @@
 import * as L from 'leaflet';
 import {Injectable} from '@angular/core';
 import {GeocodeService} from './geocode.service';
-import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 
@@ -10,7 +9,7 @@ export class MapService {
   private map;
   private marker;
   private icon;
-  constructor(private geocodeService: GeocodeService, private http: HttpClient) {
+  constructor(private geocodeService: GeocodeService) {
     this.icon = L.icon({
       iconUrl: '../../assets/image/marker-icon.png',
       shadowUrl: '../../assets/image/marker-shadow.png',
@@ -37,14 +36,6 @@ export class MapService {
     this.geocodeService.reverseGeocodeRequest(init_lat.toString(), init_lng.toString(), (newAddress) => {
       this.marker.addTo(map);
     });
-
-    // this.http.get('/services/mapservice/token').subscribe((res) => {
-    //   mapbox.accessToken = res;
-    //   const mapboxURL = 'mapbox://styles/mapbox/dark-v9';
-    //   const greyscale = L.tileLayer(mapboxURL, {id: 'map'});
-    //   const baseMaps = { 'Greyscale': greyscale };
-    //   L.control.layers(baseMaps).addTo(this.map);
-    // });
 
     this.map.on('click', (e) => {
       const lat = e['latlng'].lat;

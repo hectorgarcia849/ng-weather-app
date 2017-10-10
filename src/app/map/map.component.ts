@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GeocodeService} from "../services/geocode.service";
 import {MapService} from "../services/map.service";
 import * as L from 'leaflet';
 

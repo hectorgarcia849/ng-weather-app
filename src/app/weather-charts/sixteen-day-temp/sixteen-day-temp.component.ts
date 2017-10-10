@@ -1,14 +1,15 @@
 import {
   Component, OnDestroy, OnInit, ViewChild
 } from '@angular/core';
-import {WeatherService} from "../../services/weather.service";
-import {Subscription} from "rxjs/Subscription";
-import {Observable} from "rxjs/Observable";
+import {WeatherService} from '../../services/weather.service';
+import {Subscription} from 'rxjs/Subscription';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/timer';
 import * as moment from 'moment';
 
 
 @Component({
-  selector: 'app-five-day-temp',
+  selector: 'app-sixteen-day-temp',
   templateUrl: './sixteen-day-temp.component.html',
   styleUrls: ['./sixteen-day-temp.component.css']
 })
