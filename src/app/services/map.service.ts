@@ -68,7 +68,8 @@ export class MapService {
           [ lat, lng ],
           {icon: this.icon}
         );
-        this.map.flyTo([lat, lng], 12);
+      this.map.flyTo([lat, lng], 12);
+      this.marker.addTo(this.map);
       });
   }
 }
