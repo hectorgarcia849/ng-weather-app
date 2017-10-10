@@ -56,10 +56,8 @@ export class FiveDayWindDirectionComponent implements OnInit, OnDestroy {
         .forEach((f) => {
           const date = moment(new Date(f.dt * 1000).toISOString()).format('MMM Do');
           const index = windDirection.findIndex(function(element) { return element.name === date; });
-          console.log(windDirection);
           windDirection[index].series[this.classifyWindDirectionByIndex(f.wind.deg)].value++;
         });
-      // console.log(windDirection);
       this.graphDataWD = windDirection;
     });
   }

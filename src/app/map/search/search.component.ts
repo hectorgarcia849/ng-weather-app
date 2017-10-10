@@ -21,7 +21,6 @@ export class SearchComponent implements OnInit {
       .subscribe((location) => { this.input_text = location.location; });
   }
   onCityEntered() {
-    console.log('got it', this.input_text);
     this.mapService.updateMarker(this.input_text);
   }
 

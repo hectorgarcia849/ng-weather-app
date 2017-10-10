@@ -34,7 +34,6 @@ export class MapService {
       [ init_lat, init_lng ],
       {icon: this.icon}
     );
-    console.log(init_lat, init_lng);
     this.geocodeService.reverseGeocodeRequest(init_lat.toString(), init_lng.toString(), (newAddress) => {
       this.marker.addTo(map);
     });

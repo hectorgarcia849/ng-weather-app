@@ -45,7 +45,6 @@ export class WeatherService {
     });
     this.measurementModeSubscription = this.measurementModeSubject.asObservable().subscribe((mode) => {
       if (this.location) {
-        console.log('changed to', mode);
         this.mode = mode;
         this.getDailyForecast(this.location.lat, this.location.lng)
           .subscribe((response) => {

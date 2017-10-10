@@ -15,7 +15,6 @@ export class GeocodeService {
   reverseGeocodeRequest(lat: string, lng: string, callback: (newAddress) => void) {
     this.http.get(`${this.url}/reverserequest?lat=${lat}&lng=${lng}`)
       .subscribe((response) => {
-        console.log(response);
         const newAddress = response['results'][0].formatted;
         this.selectedLocationSubject.next({location: newAddress, lat, lng});
         callback(newAddress);
@@ -25,7 +24,6 @@ export class GeocodeService {
     return this.http.get(`${this.url}/request?address=${newAddress}`)
       .subscribe(
         (response) => {
-          console.log(response);
           if (response['results'].length > 0) {
             const lat = response['results'][0].geometry.lat;
             const lng = response['results'][0].geometry.lng;

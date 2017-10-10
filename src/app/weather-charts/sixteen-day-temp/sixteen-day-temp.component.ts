@@ -79,10 +79,6 @@ export class SixteenDayTempComponent implements OnInit, OnDestroy {
     const temp = [{name: 'Min', series: [data[min]['series'][i]]}, {name: 'Max', series: [data[max]['series'][i]]}];
     i++;
     this.graphData = temp;
-
-    // console.log(data[min]['series'].slice(0, 4));
-    // console.log(data[max]['series'].slice(0, 4));
-
     this.feedSubscription = Observable.timer(0, 2000).subscribe(() => {
       if (data[min]['series'].length === i + 1) {
         i = 0;
