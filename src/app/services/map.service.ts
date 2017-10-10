@@ -1,5 +1,4 @@
 import * as L from 'leaflet';
-import * as mapbox from 'mapbox-gl';
 import {Injectable} from '@angular/core';
 import {GeocodeService} from './geocode.service';
 import {HttpClient} from "@angular/common/http";
@@ -18,6 +17,7 @@ export class MapService {
       iconSize:     [24, 24], // size of the icon
       iconAnchor:   [24, 48]
     });
+    L.Marker.prototype.options.icon = this.icon;
     this.mapOptions = {
       layers: [
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
