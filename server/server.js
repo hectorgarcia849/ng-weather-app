@@ -3,8 +3,10 @@ require('./config/config');
 const express = require('express');
 const app = express();
 const path = require('path');
-const {servicesRouter} = require('./routes/services.js')
+const compression = require('compression');
+const {servicesRouter} = require('./routes/services.js');
 
+app.use(compression());
 app.use(express.static(__dirname + '/../dist'));
 
 app.listen(process.env.PORT || 8080);

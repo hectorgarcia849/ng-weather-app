@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod --env=prod"
+    "postinstall": "ng build --prod --aot --env=prod"
   },
   "private": true,
   "dependencies": {
@@ -35,11 +35,13 @@
     "angular2-moment": "^1.7.0",
     "bootstrap": "^3.3.7",
     "chart.js": "^2.7.0",
+    "compression": "^1.7.1",
     "core-js": "^2.4.1",
     "d3": "^4.11.0",
     "express": "^4.16.1",
     "leaflet": "1.0",
     "lodash": "^4.17.4",
+    "mapbox-gl": "^0.41.0",
     "moment": "^2.18.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.18"

@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit, ViewChildren, ViewContainerRef} from '@angular/core';
 import {MatSelect} from "@angular/material";
-import {HostDirective} from "../../host.directive";
-import {DataVisualizationService} from "../services/data-visualization.service";
-import {GeocodeService} from "../services/geocode.service";
+import {HostDirective} from "../host.directive";
+import {DataVisualizationService} from "../../services/data-visualization.service";
+import {GeocodeService} from "../../services/geocode.service";
 import {MediaChange, ObservableMedia} from "@angular/flex-layout";
 import {Subscription} from "rxjs/Subscription";
 

@@ -12,7 +12,7 @@ servicesRouter.get('/weatherservice/hourly', (req, res) => {
   const url = `${host}/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${process.env.OPENWEATHER_API_KEY}`;
   request(url, (err, response) => {
     if(err) {
-      res.status(400).send(e);
+      res.status(400).send(err);
     } else {
       res.send(response['body']);
     }
@@ -28,7 +28,7 @@ servicesRouter.get('/weatherservice/daily', (req, res) => {
   const url = `${host}/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&units=${units}&cnt=${cnt}&appid=${process.env.OPENWEATHER_API_KEY}`;
   request(url, (err, response) => {
     if(err) {
-      res.status(400).send(e);
+      res.status(400).send(err);
     } else {
       res.send(response['body']);
     }
@@ -42,7 +42,7 @@ servicesRouter.get('/geocodeservice/geocode/reverserequest', (req, res) => {
   const url = `${host}/geocode/v1/json?q=${lat}+${lng}&key=${process.env.OPENCAGE_API_KEY}`;
   request(url, (err, response) => {
     if(err) {
-      res.status(400).send(e);
+      res.status(400).send(err);
     } else {
       res.send(response['body']);
     }
@@ -55,7 +55,7 @@ servicesRouter.get('/geocodeservice/geocode/request', (req, res) => {
   const url = `${host}/geocode/v1/json?q=${address}&key=${process.env.OPENCAGE_API_KEY}`;
   request(url, (err, response) => {
     if(err) {
-      res.status(400).send(e);
+      res.status(400).send(err);
     } else {
       res.send(response['body']);
     }

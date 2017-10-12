@@ -3,6 +3,9 @@
 <div class="container" id="container-header">
   <div id="container-header-menu">
     <mat-menu #appMenu="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="measurementModeMenu">Measurement Mode</button>
+    </mat-menu>
+    <mat-menu #measurementModeMenu="matMenu">
       <button mat-menu-item *ngFor="let mode of modes" (click)="onModeChange(mode)">{{mode}}</button>
     </mat-menu>
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
