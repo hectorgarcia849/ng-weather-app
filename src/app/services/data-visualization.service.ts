@@ -1,4 +1,4 @@
-import {ComponentFactoryResolver, Injectable, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, Injectable, Type, ViewContainerRef} from '@angular/core';
 import {SixteenDayTempComponent} from '../weather-charts-dashboard/sixteen-day-temp/sixteen-day-temp.component';
 import {FiveDayWindSpeedComponent} from '../weather-charts-dashboard/five-day-wind-speed/five-day-wind-speed.component';
 import {FiveDayHumidityComponent} from '../weather-charts-dashboard/five-day-humidity/five-day-humidity.component';
@@ -9,9 +9,16 @@ import {FiveDayWindDirectionComponent} from '../weather-charts-dashboard/five-da
 export class DataVisualizationService {
 
   private viewContainers: {viewContainerRef: ViewContainerRef, child: string}[] = [];
-  charts = ['16-day Temp.', '5-day Wind Speed', '5-day Humidity', '5-day Wind Direction'];
+  chartComponents: {name: string, component: Component}[] = [
+    {name: '16-day Temp.', component: SixteenDayTempComponent},
+    {name: '5-day Wind Speed', component: FiveDayWindSpeedComponent},
+    {name: '5-day Humidity', component: FiveDayHumidityComponent},
+    {name: '5-day Wind Direction', component: FiveDayWindDirectionComponent}];
+  chartNames = [];
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {
+    this.populateChartNames();
+  }
   removeDV(name: string) {
     const len: number = this.viewContainers.length;
     for (let i = 0; i < len; i++) {
@@ -21,31 +28,19 @@ export class DataVisualizationService {
       }
     }
   }
+  private populateChartNames() {
+    this.chartComponents.forEach((chart) => this.chartNames.push(chart.name));
+  }
   DVFactory(name: string, viewContainerRef: ViewContainerRef) {
-    switch (name) {
-      case '16-day Temp.': {
-        this.viewContainers.push({viewContainerRef, child: name});
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(SixteenDayTempComponent);
-        const componentRef = viewContainerRef.createComponent(componentFactory);
-        //(<AbstractFunctionalUnit>componentRef.instance).data = this.selectedFunctionalUnits[indexOfLastElement].data;
-        //(<AbstractFunctionalUnit>componentRef.instance).viewContainerRef = viewContainerRef;
-        break;
-      }
-      case '5-day Wind Speed': {
-        this.viewContainers.push({viewContainerRef, child: name});
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FiveDayWindSpeedComponent);
+    this.chartComponents.forEach((chart) => {
+      if (chart.name === name) {
+        this.insertViewContainerRef(viewContainerRef, chart.name);
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(<Type<any>>chart.component);
         return viewContainerRef.createComponent(componentFactory);
       }
-      case '5-day Humidity': {
-        this.viewContainers.push({viewContainerRef, child: name});
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FiveDayHumidityComponent);
-        return viewContainerRef.createComponent(componentFactory);
-      }
-      case '5-day Wind Direction': {
-        this.viewContainers.push({viewContainerRef, child: name});
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(FiveDayWindDirectionComponent);
-        return viewContainerRef.createComponent(componentFactory);
-      }
-    }
+    });
+  }
+  private insertViewContainerRef(viewContainerRef: ViewContainerRef, child: string) {
+    this.viewContainers.push({viewContainerRef, child});
   }
 }

@@ -5,7 +5,7 @@
   <mat-grid-list
     cols="5" rowHeight="1:1" gutterSize="10">
     <mat-grid-tile class="tile-forecast"
-      *ngFor="let ftile of fiveForecastTiles; let i = index;"
+      *ngFor="let fdata of forecastDataForTiles; let i = index;"
       [colspan]="tileProp.cols"
       [rowspan]="tileProp.rows"
       [style.background]="tileProp.color"
@@ -13,23 +13,23 @@
 
 
       <div id="tile-forecast-content-date">
-        <p id="tile-forecast-content-date-p">{{ftile.date}}</p>
+        <p id="tile-forecast-content-date-p">{{fdata.date}}</p>
       </div>
 
       <div id="tile-forecast-content-day">
-        <h3 id="tile-forecast-content-day-h3">{{ ftile.temp.day }}{{ degrees }}</h3>
+        <h3 id="tile-forecast-content-day-h3">{{ fdata.temp.day }}{{ degrees }}</h3>
       </div>
 
       <div id="tile-forecast-content-icon">
-        <svg-icon id="tile-forecast-content-icon-svg" [src]="selectIcon(ftile.icon)"></svg-icon>
+        <svg-icon id="tile-forecast-content-icon-svg" [src]="selectIcon(fdata.icon)"></svg-icon>
       </div>
 
       <div id="tile-forecast-content-description">
-        <p id="tile-forecast-content-description-p">{{ ftile.description | titlecase}}</p>
+        <p id="tile-forecast-content-description-p">{{ fdata.description | titlecase}}</p>
       </div>
 
       <div id="tile-forecast-content-summary">
-        <p>max: {{ ftile.temp.max }}{{ degrees }} min: {{ ftile.temp.min }}{{ degrees }} <br />day: {{ ftile.temp.day }}{{ degrees }} night: {{ ftile.temp.night }}{{ degrees }}</p>
+        <p>max: {{ fdata.temp.max }}{{ degrees }} min: {{ fdata.temp.min }}{{ degrees }} <br />day: {{ fdata.temp.day }}{{ degrees }} night: {{ fdata.temp.night }}{{ degrees }}</p>
       </div>
 
     </mat-grid-tile>

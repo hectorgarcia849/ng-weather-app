@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.functionalUnitsList = this.dataVisualizationService.charts;
+    this.functionalUnitsList = this.dataVisualizationService.chartNames;
     this.locationSubscription = this.geocodeService.selectedLocation$.subscribe((location) => {
 
       if (location) {
