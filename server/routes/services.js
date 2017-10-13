@@ -42,7 +42,7 @@ servicesRouter.get('/geocodeservice/geocode/reverserequest', (req, res) => {
   const url = `${host}/geocode/v1/json?q=${lat}+${lng}&key=${process.env.OPENCAGE_API_KEY}`;
   request(url, (err, response) => {
     if(err) {
-      res.status(400).send(err);
+      res.status(404).send(err);
     } else {
       res.send(response['body']);
     }
@@ -55,7 +55,7 @@ servicesRouter.get('/geocodeservice/geocode/request', (req, res) => {
   const url = `${host}/geocode/v1/json?q=${address}&key=${process.env.OPENCAGE_API_KEY}`;
   request(url, (err, response) => {
     if(err) {
-      res.status(400).send(err);
+      res.status(404).send(err);
     } else {
       res.send(response['body']);
     }

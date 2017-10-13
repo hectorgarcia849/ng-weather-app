@@ -12,19 +12,19 @@ import {GeocodeService} from "../../services/geocode.service";
 export class SearchComponent implements OnInit {
 
   locationSubscription: Subscription;
-  @ViewChild('input_text')input_text;
+  @ViewChild('inputLocation')inputLocation;
 
   constructor(private geocodeService: GeocodeService, private mapService: MapService) { }
 
   ngOnInit() {
     this.locationSubscription = this.geocodeService.selectedLocation$
-      .subscribe((location) => { this.input_text = location.location; });
+      .subscribe((location) => { this.inputLocation = location.location; });
   }
   onCityEntered() {
-    this.mapService.updateMarker(this.input_text);
+    this.mapService.updateMarker(this.inputLocation);
   }
 
   clearInputText() {
-    this.input_text = '';
+    this.inputLocation = '';
   }
 }

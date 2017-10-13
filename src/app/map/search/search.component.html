@@ -1,6 +1,6 @@
 <form (ngSubmit)="onCityEntered()">
   <mat-form-field id="input-search">
-    <input matInput name="input_text" placeholder="Enter an address or select a location on the map..." type="text" [(ngModel)]="input_text">
+    <input matInput name="inputLocation" placeholder="Enter an address or select a location on the map..." type="text" [(ngModel)]="inputLocation">
   </mat-form-field>
   <button type="button" mat-raised-button color='warn' (click)="clearInputText()">clear search</button>
 </form>

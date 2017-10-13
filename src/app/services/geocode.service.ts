@@ -1,7 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from "@angular/core";
 import {ReplaySubject} from "rxjs/ReplaySubject";
-import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
+import {MatDialog, MatSnackBar, MatSnackBarConfig} from "@angular/material";
+import {ErrorDialogComponent} from "../utils/error-message/error-dialog.component";
 
 @Injectable()
 
@@ -10,15 +11,21 @@ export class GeocodeService {
   private selectedLocationSubject = new ReplaySubject<{location: string, lat: string, lng: string}>(1)
   selectedLocation$ = this.selectedLocationSubject.asObservable();
 
-  constructor (private http: HttpClient, private matSnackBar: MatSnackBar) {}
+  constructor (private http: HttpClient, private matSnackBar: MatSnackBar, private dialog: MatDialog) {}
 
   reverseGeocodeRequest(lat: string, lng: string, callback: (newAddress) => void) {
     this.http.get(`${this.url}/reverserequest?lat=${lat}&lng=${lng}`)
-      .subscribe((response) => {
-        const newAddress = response['results'][0].formatted;
-        this.selectedLocationSubject.next({location: newAddress, lat, lng});
-        callback(newAddress);
-    });
+      .subscribe(
+        (response) => {
+          const newAddress = response['results'][0].formatted;
+          this.selectedLocationSubject.next({location: newAddress, lat, lng});
+          callback(newAddress);
+      },
+        (error) => {
+          const message = 'Unable to get data from servers at this time.';
+          this.notifyUserOfError(message);
+        }
+    );
   }
   geocodeRequest(newAddress: string, callback: (lat, lng) => void) {
     return this.http.get(`${this.url}/request?address=${newAddress}`)
@@ -30,12 +37,22 @@ export class GeocodeService {
             this.selectedLocationSubject.next({location: newAddress, lat, lng});
             callback(lat, lng);
           } else {
-            const message = `Unable to locate ${newAddress} on servers`;
-            const config = new MatSnackBarConfig();
-            config.duration = 2500;
-            config.extraClasses = ['snack-bar-message'];
-            this.matSnackBar.open(message, null, config);
+            const message = `Unable to locate ${newAddress} on servers.`;
+            this.notifyUserOfError(message);
           }
-        });
+        },
+        (error) => {
+          const message = 'Unable to get data from servers at this time.';
+          this.notifyUserOfError(message);
+        }
+      );
+  }
+  notifyUserOfError(message: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {
+        message
+      }
+    });
   }
 }
+

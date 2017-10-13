@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {
   MatButtonModule, MatIconModule, MatMenuModule,
-  MatSnackBarModule, MatSelectModule
+  MatSnackBarModule, MatSelectModule, MatDialogModule
 } from "@angular/material";
 import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DataVisualizationService} from "./services/data-visualization.service";
@@ -13,7 +13,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {WeatherService} from "./services/weather.service";
 import {GeocodeService} from "./services/geocode.service";
 import {MapService} from "./services/map.service";
-import { ErrorMessageComponent } from './utils/error-message/error-message.component';
+import { ErrorDialogComponent } from './utils/error-message/error-dialog.component';
 import {WeatherChartsDashboardModule} from "./weather-charts-dashboard/weather-charts-dashboard.module";
 import {MapModule} from "./map/map.module";
 import {ForecastModule} from "./forecast/forecast.module";
@@ -22,7 +22,7 @@ import {ForecastModule} from "./forecast/forecast.module";
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorMessageComponent
+    ErrorDialogComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -31,6 +31,7 @@ import {ForecastModule} from "./forecast/forecast.module";
     ForecastModule,
     FormsModule,
     MatButtonModule,
+    MatDialogModule,
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
@@ -41,6 +42,6 @@ import {ForecastModule} from "./forecast/forecast.module";
   ],
   providers: [DataVisualizationService, WeatherService, GeocodeService, MapService],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorMessageComponent]
+  entryComponents: [ErrorDialogComponent]
 })
 export class AppModule { }
