@@ -111,6 +111,7 @@ md-grid-tile {
     font-size:7.5vh;
     background-blend-mode:overlay;
     text-align:center;
+    float: right;
   }
 
   .grid-title {
