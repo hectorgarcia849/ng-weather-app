@@ -3,7 +3,7 @@
 
 <div>
   <mat-grid-list
-    cols="5" rowHeight="1:1" gutterSize="10">
+    cols="5" rowHeight="1:1.5" gutterSize="5">
     <mat-grid-tile class="tile-forecast"
       *ngFor="let fdata of forecastDataForTiles; let i = index;"
       [colspan]="tileProp.cols"
@@ -29,7 +29,7 @@
       </div>
 
       <div id="tile-forecast-content-summary">
-        <p>max: {{ fdata.temp.max }}{{ degrees }} min: {{ fdata.temp.min }}{{ degrees }} <br />day: {{ fdata.temp.day }}{{ degrees }} night: {{ fdata.temp.night }}{{ degrees }}</p>
+        <p>max: {{ fdata.temp.max }}{{ degrees }} <br /> min: {{ fdata.temp.min }}{{ degrees }} <br />day: {{ fdata.temp.day }}{{ degrees }} <br /> night: {{ fdata.temp.night }}{{ degrees }}</p>
       </div>
 
     </mat-grid-tile>

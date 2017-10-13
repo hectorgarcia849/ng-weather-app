@@ -10,7 +10,6 @@ body, html {
 }
 
 md-grid-tile {
-  border: 1px solid white;
   -webkit-animation-name: component_animate; /* Safari 4.0 - 8.0 */
   -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
   animation-name: component_animate;
@@ -55,6 +54,7 @@ md-grid-tile {
   }
 
   #container-footer {
+    float: right;
     margin-bottom: 0;
     margin-top: 20px;
     width:100%; float: right;
@@ -67,6 +67,7 @@ md-grid-tile {
 
   #container-map-forecast {
     width: 100%;
+    height: 100%;
   }
 
   #container-dashboard {
@@ -153,6 +154,9 @@ md-grid-tile {
 
   /* tiles */
 
+  .tile-forecast {
+  }
+
   #tile-forecast-content-date {
     width:100%;
     position: absolute;
@@ -161,7 +165,7 @@ md-grid-tile {
   }
 
   #tile-forecast-content-date-p {
-    font-size: 1vh;
+    font-size: 1.5vh;
     white-space: nowrap;
     text-align: center;
   }
@@ -179,12 +183,12 @@ md-grid-tile {
     width:100%;
     position: absolute;
     left:0%;
-    top:40%;
+    top:35%;
     padding: 0;
   }
 
   #tile-forecast-content-day-h3 {
-    font-size:2.5vh;
+    font-size:2.9vh;
     text-align: center;
     margin: 0;
   }
@@ -193,12 +197,12 @@ md-grid-tile {
     width:100%;
     position: absolute;
     left:0%;
-    top:60%;
+    top:50%;
     padding:0;
   }
 
   #tile-forecast-content-description-p {
-    font-size: 1.0vh;
+    font-size: 1.5vh;
     text-align: center;
   }
 
@@ -206,8 +210,8 @@ md-grid-tile {
     width:100%;
     position: absolute;
     left:0%;
-    top:75%;
-    font-size: 0.8vh;
+    top:65%;
+    font-size: 1.5vh;
     text-align: center;
     padding: 0% 5% 0% 5%;
   }
@@ -247,7 +251,7 @@ md-grid-tile {
   }
 
   #tile-forecast-content-day {
-    top:35%;
+    top:30%;
   }
 
   #tile-forecast-content-day-h3 {
@@ -292,6 +296,10 @@ md-grid-tile {
   #container-header-menu {
     float:left;
     margin-top: 25px;
+  }
+
+  #container-footer {
+    height: 500px;
   }
 
   /* map */
@@ -344,7 +352,7 @@ md-grid-tile {
     width:100%;
     position: absolute;
     left:0%;
-    top:35%;
+    top:30%;
     padding: 0;
   }
 
@@ -353,13 +361,17 @@ md-grid-tile {
   }
 
   #tile-forecast-content-description-p {
-    font-size: 1.3vh;
+    font-size: 1.5vh;
   }
 
   #tile-forecast-content-summary {
     font-size: 1.5vh;
   }
 
+  #title-footer {
+    position: relative;
+    top: 90%;
+  }
 }
 
 @media only screen and (min-width: 1024px) and (min-height: 1366px) {
@@ -377,7 +389,7 @@ md-grid-tile {
   }
 
   #tile-forecast-content-day {
-    top:38%;
+    top:36%;
   }
 
   #tile-forecast-content-day-h3 {
