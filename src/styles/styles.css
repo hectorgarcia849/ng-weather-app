@@ -168,6 +168,7 @@ md-grid-tile {
     font-size: 1.5vh;
     white-space: nowrap;
     text-align: center;
+    margin-bottom: 0;
   }
 
   #tile-forecast-content-icon {
@@ -204,6 +205,7 @@ md-grid-tile {
   #tile-forecast-content-description-p {
     font-size: 1.5vh;
     text-align: center;
+    margin-bottom: 0;
   }
 
   #tile-forecast-content-summary {
@@ -211,9 +213,13 @@ md-grid-tile {
     position: absolute;
     left:0%;
     top:65%;
-    font-size: 1.5vh;
     text-align: center;
     padding: 0% 5% 0% 5%;
+  }
+
+  #tile-forecast-content-summary-p {
+    font-size: 1.5vh;
+    margin-bottom: 0;
   }
 
   .tile-content {
