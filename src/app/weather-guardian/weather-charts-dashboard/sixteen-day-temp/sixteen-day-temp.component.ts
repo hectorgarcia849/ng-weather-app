@@ -1,7 +1,7 @@
 import {
   Component, OnDestroy, OnInit, ViewChild
 } from '@angular/core';
-import {WeatherService} from '../../services/weather.service';
+import {WeatherService} from '../../../services/weather.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';

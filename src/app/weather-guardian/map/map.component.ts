@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MapService} from "../services/map.service";
+import {MapService} from "../../services/map.service";
 import * as L from 'leaflet';
 
 @Component({

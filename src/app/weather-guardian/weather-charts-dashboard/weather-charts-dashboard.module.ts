@@ -40,7 +40,6 @@ import {FlexLayoutModule} from "@angular/flex-layout";
   ],
   exports: [
     DashboardComponent
-
   ],
   entryComponents: [FiveDayWindSpeedComponent, FiveDayHumidityComponent, FiveDayWindDirectionComponent, SixteenDayTempComponent]
 })

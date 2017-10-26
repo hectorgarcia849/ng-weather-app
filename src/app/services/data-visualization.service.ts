@@ -1,8 +1,10 @@
 import {Component, ComponentFactoryResolver, Injectable, Type, ViewContainerRef} from '@angular/core';
-import {SixteenDayTempComponent} from '../weather-charts-dashboard/sixteen-day-temp/sixteen-day-temp.component';
-import {FiveDayWindSpeedComponent} from '../weather-charts-dashboard/five-day-wind-speed/five-day-wind-speed.component';
-import {FiveDayHumidityComponent} from '../weather-charts-dashboard/five-day-humidity/five-day-humidity.component';
-import {FiveDayWindDirectionComponent} from '../weather-charts-dashboard/five-day-wind-direction/five-day-wind-direction.component';
+import {SixteenDayTempComponent} from '../weather-guardian/weather-charts-dashboard/sixteen-day-temp/sixteen-day-temp.component';
+import {FiveDayWindSpeedComponent} from '../weather-guardian/weather-charts-dashboard/five-day-wind-speed/five-day-wind-speed.component';
+import {FiveDayHumidityComponent} from '../weather-guardian/weather-charts-dashboard/five-day-humidity/five-day-humidity.component';
+import {
+  FiveDayWindDirectionComponent
+} from '../weather-guardian/weather-charts-dashboard/five-day-wind-direction/five-day-wind-direction.component';
 
 @Injectable()
 

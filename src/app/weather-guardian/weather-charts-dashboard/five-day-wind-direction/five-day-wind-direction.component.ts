@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit } from '@angular/core';
 import {Subscription} from "rxjs/Subscription";
-import {WeatherService} from "../../services/weather.service";
+import {WeatherService} from "../../../services/weather.service";
 import * as moment from 'moment';
 
 @Component({

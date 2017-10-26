@@ -1,40 +1,12 @@
-
-<!--header-->
-<div class="container" id="container-header">
-  <div id="container-header-menu">
-    <mat-menu #appMenu="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="measurementModeMenu">Measurement Mode</button>
-    </mat-menu>
-    <mat-menu #measurementModeMenu="matMenu">
-      <button mat-menu-item *ngFor="let mode of modes" (click)="onModeChange(mode)">{{mode}}</button>
-    </mat-menu>
-    <button mat-icon-button [matMenuTriggerFor]="appMenu">
-      <mat-icon id="icon-header-menu">menu</mat-icon>
-    </button>
-  </div>
-  <div>
-    <h1 id="title">Weather Guardian</h1>
-  </div>
-</div>
-
-<div>
-  <div>
-    <!--map and forecast-->
-    <div class="container" id="container-map-forecast">
-      <app-map></app-map>
-
-      <!--forecast-->
-      <div>
-        <app-forecast></app-forecast>
-      </div>
-    </div>
-
-    <!--dashboard-->
-    <div class="container" id="container-dashboard">
-      <app-dashboard></app-dashboard>
+<app-header></app-header>
+<div [hidden]="!loading">
+  <div style="margin: 100px 33%; width: 33%;">
+    <!--<h2 class="grid-title" style="text-align: center; font-family: Arial; "></h2>-->
+    <div style="margin: 0 40%;">
+      <mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
     </div>
   </div>
 </div>
-<div id="container-footer">
-  <p id="title-footer">Hector Garcia Production</p>
+<div [hidden]="loading">
+  <router-outlet></router-outlet>
 </div>

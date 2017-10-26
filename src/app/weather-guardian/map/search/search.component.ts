@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MapService} from "../../services/map.service";
+import {MapService} from "../../../services/map.service";
 import {Subscription} from "rxjs/Subscription";
-import {GeocodeService} from "../../services/geocode.service";
+import {GeocodeService} from "../../../services/geocode.service";
 
 
 @Component({
