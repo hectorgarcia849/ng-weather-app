@@ -14,6 +14,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {MaterialsModule} from './materials/materials.module';
 import { HeaderComponent } from './header/header.component';
 import { LoadingComponent } from './loading/loading.component';
+import {WeatherChartsDashboardModule} from './weather-guardian/weather-charts-dashboard/weather-charts-dashboard.module';
+import {FiveDayWindSpeedComponent} from './weather-guardian/weather-charts-dashboard/five-day-wind-speed/five-day-wind-speed.component';
+import {FiveDayHumidityComponent} from './weather-guardian/weather-charts-dashboard/five-day-humidity/five-day-humidity.component';
+import {FiveDayWindDirectionComponent} from './weather-guardian/weather-charts-dashboard/five-day-wind-direction/five-day-wind-direction.component';
+import {SixteenDayTempComponent} from './weather-guardian/weather-charts-dashboard/sixteen-day-temp/sixteen-day-temp.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +34,18 @@ import { LoadingComponent } from './loading/loading.component';
     FormsModule,
     MaterialsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    WeatherChartsDashboardModule
   ],
   providers: [DataVisualizationService, WeatherService, GeocodeService, MapService],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorDialogComponent]
+  entryComponents:
+    [
+      ErrorDialogComponent,
+      FiveDayWindSpeedComponent,
+      FiveDayHumidityComponent,
+      FiveDayWindDirectionComponent,
+      SixteenDayTempComponent
+    ]
 })
 export class AppModule { }

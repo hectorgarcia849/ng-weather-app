@@ -5,7 +5,8 @@ import {LoadingComponent} from './loading/loading.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: 'loading', pathMatch: 'full'},
   {path: 'loading', component: LoadingComponent},
-  {path: 'home', loadChildren: './weather-guardian/weather-guardian.module#WeatherGuardianModule'}
+  {path: 'home', loadChildren: './weather-guardian/weather-guardian.module#WeatherGuardianModule'},
+  {path: '**', redirectTo: 'loading', pathMatch: 'full'}
 ];
 
 @NgModule({
