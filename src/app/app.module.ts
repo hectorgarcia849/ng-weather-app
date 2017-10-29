@@ -19,6 +19,7 @@ import {FiveDayWindSpeedComponent} from './weather-guardian/weather-charts-dashb
 import {FiveDayHumidityComponent} from './weather-guardian/weather-charts-dashboard/five-day-humidity/five-day-humidity.component';
 import {FiveDayWindDirectionComponent} from './weather-guardian/weather-charts-dashboard/five-day-wind-direction/five-day-wind-direction.component';
 import {SixteenDayTempComponent} from './weather-guardian/weather-charts-dashboard/sixteen-day-temp/sixteen-day-temp.component';
+import {ModalModule} from "ngx-bootstrap";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {SixteenDayTempComponent} from './weather-guardian/weather-charts-dashboa
     MaterialsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    WeatherChartsDashboardModule
+    WeatherChartsDashboardModule,
+    ModalModule.forRoot()
   ],
   providers: [DataVisualizationService, WeatherService, GeocodeService, MapService],
   bootstrap: [AppComponent],
